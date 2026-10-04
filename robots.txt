@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://groupjoinlink.com/sitemap.xml
