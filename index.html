@@ -1,10 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
   <title>Group Join Link - Unlimited Active WhatsApp Group Links</title>
-
 
   <!-- BROWSER TAB LOGO (FAVICON) -->
   <link rel="icon" type="image/png" href="logo.png">
@@ -49,8 +49,7 @@
   <!-- FIREBASE SDKs -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-</head>
-  
+
   <style>
       * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
       body { background-color: #f0f2f5; color: #1c1e21; padding-bottom: 30px; }
@@ -132,8 +131,6 @@
           100% { background-position: -200% 0; }
       }
 
-      .empty-msg { color: #4a5568; font-size: 14px; text-align: center; padding: 25px 0; font-weight: 500; }
-
       .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 1000; padding: 15px; }
       .modal-content { background: white; padding: 22px; border-radius: 12px; width: 100%; max-width: 450px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); max-height: 90vh; overflow-y: auto; }
       .modal-content h3 { margin-bottom: 16px; color: #075e54; font-size: 20px; text-align: center; }
@@ -156,7 +153,7 @@
       .admin-link-box a { color: #3182ce; text-decoration: underline; }
       .clicks-badge { background: #edf2f7; color: #2d3748; padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; display: inline-block; margin-top: 5px; border: 1px solid #cbd5e0; }
   </style>
-</>
+</head>
 <body>
 
     <!-- GREEN TOP SECTION -->
@@ -218,9 +215,10 @@
             <input type="hidden" id="reportGroupId">
             <div class="form-group">
                 <label>Reason for Report</label>
-                <textarea id="reportReason" rows="3" placeholder="Enter details why this group is invalid or broken..."></textarea>
+                <textarea id="reportReason" placeholder="Enter details why this group is invalid or broken..." style="resize: none;"></textarea>
+
             </div>
-            <button class="btn-banner btn-left" style="width:100%; margin-top:8px;" onclick="sendReport()">Submit Report</button>
+            <button class="btn-banner btn-left" style="width:100%; margin-top:8px; background-color:#e53e3e;" onclick="sendReport()">Submit Report</button>
             <button class="btn-close" onclick="closeModal('reportModal')">Close</button>
         </div>
     </div>
@@ -229,7 +227,10 @@
     <div id="adminLoginModal" class="modal">
         <div class="modal-content">
             <h3>Admin Login</h3>
-            <input type="password" id="adminPass" placeholder="Enter Admin Password">
+            <div class="form-group">
+                <label>Enter Password</label>
+                <input type="password" id="adminPass" placeholder="Enter Admin Password">
+            </div>
             <button class="btn-banner btn-left" style="width:100%; margin-top:10px;" onclick="checkAdminLogin()">Login Dashboard</button>
             <button class="btn-close" onclick="closeModal('adminLoginModal')">Close</button>
         </div>
@@ -259,13 +260,9 @@
         "Iraq", "Algeria", "Turkey", "New York" , "Morocco", "Qatar" , "United State" , "United Kindom" , "Other Country"
     ];
 
-    // Blocked / Inappropriate Keywords
     const blockedKeywords = ["xxx", "sexy", "hot", "girls", "18+", "adult", "sex", "nude", "porn"];
-
-    // Positive / Islamic Auto-Approve Keywords
     const positiveKeywords = ["islam", "deen", "quran", "hadith", "sunnah", "madani", "naat", "bayan", "islamic", "allah"];
 
-    // FIREBASE CONFIGURATION
     const firebaseConfig = {
       apiKey: "AIzaSyA3IddMLRa2hilO7aoCWFi1T4jzUHjAK48",
       authDomain: "whatsapp-directory-fa7b9.firebaseapp.com",
@@ -306,14 +303,16 @@
         }
     }
 
-    // Secret Admin Panel Opener (4 Quick Taps on Title)
     let tapCount = 0, tapTimer = null;
-    document.getElementById('siteTitle').addEventListener('click', function() {
-        tapCount++; 
-        clearTimeout(tapTimer);
-        tapTimer = setTimeout(() => { tapCount = 0; }, 2000);
-        if (tapCount === 4) { tapCount = 0; openModal('adminLoginModal'); }
-    });
+    const titleElem = document.getElementById('siteTitle');
+    if (titleElem) {
+        titleElem.addEventListener('click', function() {
+            tapCount++; 
+            clearTimeout(tapTimer);
+            tapTimer = setTimeout(() => { tapCount = 0; }, 2000);
+            if (tapCount === 4) { tapCount = 0; openModal('adminLoginModal'); }
+        });
+    }
 
     function checkAdminLogin() {
         const pass = document.getElementById('adminPass').value;
@@ -335,12 +334,9 @@
         });
     }
 
-    // AUTO-DELETE GROUP ALONG WITH ITS REPORTS
     function deleteGroupAndReports(groupId) {
         if (!groupId) return;
-        
         db.ref('groups/' + groupId).remove();
-
         db.ref('reports').once('value', (snapshot) => {
             snapshot.forEach((child) => {
                 if (child.val().groupId === groupId) {
@@ -355,6 +351,7 @@
         if (cachedData) {
             try {
                 allGroups = JSON.parse(cachedData);
+                allGroups.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
                 renderMainCategories();
             } catch(e){}
         }
@@ -367,10 +364,18 @@
                 allGroups.push(g);
             });
             
+            allGroups.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
             localStorage.setItem('fast_cached_groups', JSON.stringify(allGroups));
             renderMainCategories();
             if (document.getElementById('adminDashboardModal').style.display === 'flex') {
                 loadAdminTabContent();
+            }
+        }, (error) => {
+            console.error("Firebase Read Error: ", error);
+            const container = document.getElementById('categoriesContainer');
+            if (container && allGroups.length === 0) {
+                container.innerHTML = '<div style="text-align:center; padding:20px;">Database Connection Error! Check Firebase Rules.</div>';
             }
         });
 
@@ -389,10 +394,12 @@
 
     function renderMainCategories() {
         const container = document.getElementById('categoriesContainer');
+        if (!container) return;
+
         let approvedGroups = allGroups.filter(g => !g.status || g.status === 'approved');
 
         if (approvedGroups.length === 0) {
-            container.innerHTML = '<div class="empty-msg">No approved groups available right now.</div>';
+            container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No approved groups available right now.</div>';
             return;
         }
 
@@ -405,7 +412,10 @@
         });
 
         sortedCategories.forEach((cat) => {
-            let catGroups = approvedGroups.filter(g => g.category === cat);
+            let catGroups = approvedGroups
+                .filter(g => g.category === cat)
+                .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
             if (catGroups.length === 0) return;
 
             const sec = document.createElement('div');
@@ -449,7 +459,10 @@
     }
 
     function toggleShowMore(categoryName) {
-        let approvedGroups = allGroups.filter(g => (!g.status || g.status === 'approved') && g.category === categoryName);
+        let approvedGroups = allGroups
+            .filter(g => (!g.status || g.status === 'approved') && g.category === categoryName)
+            .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
         let listContainer = document.getElementById(`cat-list-${categoryName.replace(/\s+/g, '-')}`);
         let btn = document.getElementById(`btn-more-${categoryName.replace(/\s+/g, '-')}`);
 
@@ -486,43 +499,30 @@
         }
     }
 
-    // SUBMIT GROUP WITH FILTER & AUTO-APPROVAL
     function submitGroup() {
       const name = document.getElementById('subName').value.trim();
       const category = document.getElementById('subCategory').value;
       const country = document.getElementById('subCountry').value;
       const link = document.getElementById('subLink').value.trim();
 
-      if (!name || !link) {
-        alert('Please fill in Group Name and WhatsApp Link!');
-        return;
-      }
-      if (!category) {
-        alert('Please select a Category!');
-        return;
-      }
-      if (!country) {
-        alert('Please select a Country!');
+      if (!name || !link || !category || !country) {
+        alert('Please fill in all fields!');
         return;
       }
 
       const lowerName = name.toLowerCase();
-
-      // 1. BLOCK NEGATIVE / ADULT WORDS
       const containsBlocked = blockedKeywords.some(word => lowerName.includes(word));
       if (containsBlocked) {
-        alert('⚠️ Submission Failed! Inappropriate or adult group names are strictly not allowed.');
+        alert('⚠️ Submission Failed! Inappropriate group names are not allowed.');
         return;
       }
 
-      // DUPLICATE LINK CHECK
       const isDuplicate = allGroups.some(g => g.link && g.link.trim().toLowerCase() === link.toLowerCase());
       if (isDuplicate) {
         alert('⚠️ Yeh WhatsApp group link pehle se submit hua parha hai!');
         return;
       }
 
-      // 2. CHECK FOR POSITIVE / ISLAMIC WORDS
       const isPositive = positiveKeywords.some(word => lowerName.includes(word));
 
       db.ref('groups').push({
@@ -535,21 +535,14 @@
         timestamp: Date.now()
       }).then((ref) => {
         const newGroupId = ref.key;
-
         if (isPositive) {
-          alert('✅ Verified Positive/Islamic Group! Your group will be automatically approved in 5 minutes.');
-          
-          // 5 Minutes Auto-Approval Timer (300,000 ms)
+          alert('✅ Verified Positive/Islamic Group! Your group will be auto approved shortly.');
           setTimeout(() => {
-            db.ref('groups/' + newGroupId).update({
-              status: 'approved'
-            });
+            db.ref('groups/' + newGroupId).update({ status: 'approved' });
           }, 5 * 60 * 1000);
-
         } else {
           alert('Group Submitted for Admin Review!');
         }
-
         closeModal('submitModal');
         document.getElementById('subName').value = '';
         document.getElementById('subLink').value = '';
@@ -559,33 +552,36 @@
       });
     }
 
-    // REPORT MODAL OPEN
     function openReportModal(id) { 
         document.getElementById('reportGroupId').value = id; 
         document.getElementById('reportReason').value = ''; 
         openModal('reportModal'); 
     }
     
-    // REPORT SUBMIT FUNCTION
     function sendReport() {
-        const id = document.getElementById('reportGroupId').value;
-        const reason = document.getElementById('reportReason').value.trim();
-        
-        if (!reason) { alert('Please enter a reason for reporting!'); return; }
-        if (!id) { alert('Group ID missing!'); return; }
-
-        db.ref('reports').push({
-            groupId: id,
-            reason: reason,
-            timestamp: Date.now()
-        }).then(() => {
-            alert('✅ Report submitted successfully to Admin!');
-            document.getElementById('reportReason').value = '';
-            closeModal('reportModal');
-        }).catch((err) => {
-            alert('Report Submission Error: ' + err.message);
-        });
+    const id = document.getElementById('reportGroupId').value;
+    const reason = document.getElementById('reportReason').value.trim();
+    
+    if (!reason || !id) { 
+        alert('Please enter details!'); 
+        return; 
     }
+
+    // Sirf report database me push hogi, group ka status change nahi hoga
+    db.ref('reports').push({
+        groupId: id,
+        reason: reason,
+        timestamp: Date.now()
+    }).then(() => {
+        alert('✅ Report submitted successfully!');
+        document.getElementById('reportReason').value = '';
+        closeModal('reportModal');
+    }).catch((err) => {
+        alert('Report Error: ' + err.message);
+    });
+}
+
+
 
     function switchAdminTab(tabName) {
         currentTab = tabName;
@@ -600,7 +596,7 @@
 
         if (currentTab === 'pending') {
             const list = allGroups.filter(g => g.status === 'pending');
-            if (list.length === 0) { container.innerHTML = '<div class="empty-msg">No pending groups.</div>'; return; }
+            if (list.length === 0) { container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No pending groups.</div>'; return; }
             list.forEach(g => {
                 container.innerHTML += `
                     <div class="admin-item">
@@ -615,15 +611,21 @@
                     </div>
                 `;
             });
-        } else if (currentTab === 'approved') {
+                } else if (currentTab === 'approved') {
             const list = allGroups.filter(g => g.status === 'approved' || !g.status);
-            if (list.length === 0) { container.innerHTML = '<div class="empty-msg">No approved groups.</div>'; return; }
+            if (list.length === 0) { 
+                container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No approved groups.</div>'; 
+                return; 
+            }
             list.forEach(g => {
                 const clickCount = g.clicks || 0;
+
                 container.innerHTML += `
                     <div class="admin-item">
                         <b>${escapeHTML(g.name)} (${escapeHTML(g.country || 'Global')})</b>
-                        <div class="clicks-badge">👁️ Total Clicks: ${clickCount}</div>
+                        <div style="display: flex; gap: 10px; margin: 5px 0;">
+                            <span class="clicks-badge">👁️ Total Clicks: ${clickCount}</span>
+                        </div>
                         <div class="admin-link-box">Category: ${escapeHTML(g.category || 'General')}</div>
                         <div class="admin-link-box">Link: <a href="${escapeHTML(g.link)}" target="_blank">${escapeHTML(g.link || 'No link')}</a></div>
                         <div class="admin-btn-row">
@@ -633,26 +635,38 @@
                     </div>
                 `;
             });
-        } else if (currentTab === 'reports') {
-            if (allReports.length === 0) { container.innerHTML = '<div class="empty-msg">No reports found.</div>'; return; }
+
+                } else if (currentTab === 'reports') {
+            if (allReports.length === 0) { 
+                container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No reports found.</div>'; 
+                return; 
+            }
             allReports.forEach(r => {
                 const group = allGroups.find(g => g.id === r.groupId);
                 const groupName = group ? group.name : 'Unknown Group';
                 const groupLink = group ? group.link : '';
+                
+                // Is group ki Kul (Total) Reports count calculate karein
+                const totalGroupReports = allReports.filter(rep => rep.groupId === r.groupId).length;
+
                 container.innerHTML += `
                     <div class="admin-item">
-                        <b>Group: ${escapeHTML(groupName)}</b>
-                        <div><small>Reason: ${escapeHTML(r.reason)}</small></div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <b>Group: ${escapeHTML(groupName)}</b>
+                            <span class="clicks-badge" style="background: #ffebee; color: #c62828;">⚠️ Total Reports: ${totalGroupReports}</span>
+                        </div>
+                        <div><small><strong>Reason:</strong> ${escapeHTML(r.reason)}</small></div>
                         ${groupLink ? `<div class="admin-link-box">Link: <a href="${escapeHTML(groupLink)}" target="_blank">${escapeHTML(groupLink)}</a></div>` : ''}
                         <div class="admin-btn-row">
-                            <button class="btn-delete" onclick="db.ref('reports/${r.id}').remove()">Dismiss</button>
+                            <button class="btn-delete" onclick="db.ref('reports/${r.id}').remove()">Dismiss Report</button>
                             ${groupLink ? `<button class="btn-copy-admin" onclick="copyGroupLink('${escapeHTML(groupLink)}')">📋 Copy Link</button>` : ''}
-                            ${group ? `<button class="btn-delete" onclick="deleteGroupAndReports('${r.groupId}')">Delete Group</button>` : ''}
+                            ${group ? `<button class="btn-delete" style="background: #c62828;" onclick="deleteGroupAndReports('${r.groupId}')">Delete Group</button>` : ''}
                         </div>
                     </div>
                 `;
             });
         }
+
     }
 
     window.onload = function() {
@@ -675,10 +689,5 @@
     </div>
   </footer>
 
-
-
-
 </body>
 </html>
-
-  
