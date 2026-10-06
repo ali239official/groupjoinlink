@@ -3,7 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group Details - Whats Group Join Links</title>
+    
+    <!-- Primary SEO Meta Tags (Default Fallback) -->
+    <title>Group Details - Join Active WhatsApp Group | Group Join Link</title>
+    <meta name="title" content="Group Details - Join Active WhatsApp Group | Group Join Link">
+    <meta name="description" content="View group details and join active WhatsApp groups instantly. Get verified group invite links for Online Earning, Movies, Jobs, and Gaming on groupjoinlink.com.">
+    <meta name="keywords" content="whatsapp group details, join whatsapp group link, active whatsapp groups, online earning group link, movies whatsapp group, viral video whatsapp group, jobs whatsapp group link">
+    <meta name="robots" content="index, follow">
+
+    <!-- BROWSER TAB LOGO (FAVICON) -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Sitemap & Canonical Links -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://groupjoinlink.com/sitemap.xml" />
+    <link rel="canonical" href="https://groupjoinlink.com/" />
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://groupjoinlink.com/" />
+    <meta property="og:title" content="Group Details - Join Active WhatsApp Group" />
+    <meta property="og:description" content="View group details and join active WhatsApp groups instantly for Movies, Videos, Jobs, Earning, and Gaming." />
+    <meta property="og:image" content="https://groupjoinlink.com/1790478455723.jpg">
+
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://groupjoinlink.com/">
+    <meta property="twitter:title" content="Group Details - Join Active WhatsApp Group">
+    <meta property="twitter:description" content="View group details and join active WhatsApp groups instantly for Movies, Videos, Jobs, Earning, and Gaming.">
+    <meta property="twitter:image" content="https://groupjoinlink.com/1790478455723.jpg">
     
     <!-- FIREBASE SDKs -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -35,8 +63,7 @@
         }
 
         /* GROUP NAME WITH EXACT CATEGORY-STYLE BACKGROUND */
-        .group-title { 
-            display: inline-block;
+        .group-title {
             background: #edf2f7; 
             color: #075e54; 
             padding: 10px 22px; 
@@ -176,16 +203,52 @@
             }, 1000);
         }
 
+        // DYNAMIC SEO META UPDATE FUNCTION
+        function updatePageSEO(groupName, category) {
+            const name = groupName || "WhatsApp Group";
+            const cat = category || "General";
+            const dynamicTitle = `${name} - Join Active WhatsApp Group Link`;
+            const dynamicDesc = `Join ${name} (${cat}) WhatsApp group link instantly on groupjoinlink.com. Discover 100% real active WhatsApp groups for Online Earning, Movies, Jobs, and Gaming.`;
+
+            // Browser Title & Head Meta
+            document.title = dynamicTitle;
+            
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute("content", dynamicDesc);
+
+            const metaTitle = document.querySelector('meta[name="title"]');
+            if (metaTitle) metaTitle.setAttribute("content", dynamicTitle);
+
+            // Open Graph (Facebook/WhatsApp Share)
+            const ogTitle = document.querySelector('meta[property="og:title"]');
+            if (ogTitle) ogTitle.setAttribute("content", dynamicTitle);
+
+            const ogDesc = document.querySelector('meta[property="og:description"]');
+            if (ogDesc) ogDesc.setAttribute("content", dynamicDesc);
+
+            // Twitter Cards
+            const twTitle = document.querySelector('meta[property="twitter:title"]');
+            if (twTitle) twTitle.setAttribute("content", dynamicTitle);
+
+            const twDesc = document.querySelector('meta[property="twitter:description"]');
+            if (twDesc) twDesc.setAttribute("content", dynamicDesc);
+        }
+
         function renderGroupDetails(group) {
             const card = document.getElementById('detailCard');
             const groupLink = escapeHTML(group.link);
+            const groupNameClean = escapeHTML(group.name);
+            const groupCatClean = escapeHTML(group.category || 'General');
+
+            // Trigger Dynamic SEO Update
+            updatePageSEO(groupNameClean, groupCatClean);
             
             card.innerHTML = `
                 <div>
-                    <h1 class="group-title">${escapeHTML(group.name)}</h1>
+                    <h1 class="group-title">${groupNameClean}</h1>
                 </div>
                 <div class="meta-tags-wrapper">
-                    <span class="meta-tag">📁 ${escapeHTML(group.category || 'General')}</span>
+                    <span class="meta-tag">📁 ${groupCatClean}</span>
                     <span class="meta-tag">🌍 ${escapeHTML(group.country || 'Global')}</span>
                 </div>
                 <a href="#" id="joinBtn" target="_blank" class="btn-join-main disabled">Please wait (5s)...</a>
