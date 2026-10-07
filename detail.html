@@ -130,6 +130,63 @@
             font-weight: bold;
         }
 
+        /* MODERN PROFESSIONAL RULES SECTION */
+        .rules-wrapper {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed #cbd5e0;
+            text-align: left;
+        }
+
+        .rules-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 14px;
+        }
+
+        .rules-header span {
+            background: #feebc8;
+            color: #c05621;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .rules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .rule-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: #f7fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #edf2f7;
+            font-size: 13px;
+            color: #4a5568;
+            line-height: 1.4;
+        }
+
+        .rule-item .icon {
+            font-size: 14px;
+            line-height: 1;
+            margin-top: 2px;
+        }
+
+        .rule-item strong {
+            color: #2d3748;
+        }
+
         /* SKELETON ANIMATION */
         .skeleton-title { height: 40px; width: 60%; background: #e0e0e0; margin: 0 auto 20px; border-radius: 20px; }
         .skeleton-pill { height: 24px; width: 35%; background: #e0e0e0; margin: 0 auto 10px; border-radius: 12px; }
@@ -254,6 +311,31 @@
                 <a href="#" id="joinBtn" target="_blank" class="btn-join-main disabled">Please wait (5s)...</a>
                 <div>
                     <a href="index.html" class="btn-back">⬅ Back to Home</a>
+                </div>
+
+                <!-- MODERN PROFESSIONAL RULES SECTION -->
+                <div class="rules-wrapper">
+                    <div class="rules-header">
+                        📋 Group Rules <span>Notice</span>
+                    </div>
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <span class="icon">🤝</span>
+                            <div><strong>Respect Members:</strong> Maintain polite behaviour and avoid abusive language.</div>
+                        </div>
+                        <div class="rule-item">
+                            <span class="icon">🚫</span>
+                            <div><strong>No Spam Links:</strong> Sharing unauthorized links or promotion is strictly prohibited.</div>
+                        </div>
+                        <div class="rule-item">
+                            <span class="icon">🎯</span>
+                            <div><strong>Stay On-Topic:</strong> Keep conversations relevant to the category.</div>
+                        </div>
+                        <div class="rule-item">
+                            <span class="icon">🔒</span>
+                            <div><strong>Privacy First:</strong> Respect the personal privacy of all group participants.</div>
+                        </div>
+                    </div>
                 </div>
             `;
 

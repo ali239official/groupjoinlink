@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
-    <title>Group Join Link - Unlimited Active WhatsApp Group Links 2026</title>
+  <title>Group Join Link - Unlimited Active WhatsApp Group Links 2026</title>
 
   <!-- BROWSER TAB LOGO (FAVICON) -->
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
   
   <!-- Primary SEO Meta Tags -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="title" content="Group Join Link - Unlimited Active WhatsApp Group Links 2026">
-  <meta name="description" content="Join 100% active real WhatsApp groups on groupjoinlink.com. Discover links for Online Earning, Movies, Funny Videos, Girls Chat, Jobs, USA/UK, Trading, Islamic, and PUBG/Free Fire Gaming.">
-  <meta name="keywords" content="whatsapp group links, active whatsapp group link, online earning whatsapp groups, movies whatsapp group link, funny video whatsapp group, pakistani whatsapp group link, indian whatsapp group links, usa whatsapp group link, uk whatsapp group, job alerts whatsapp group, crypto trading signals, forex whatsapp group, pubg pakistan free fire groups, whatsapp group link join, status video whatsapp group, instagram reels whatsapp group, online earning app whatsapp group, student education whatsapp group, girls chat whatsapp group, sub4sub youtube whatsapp group, daily quran whatsapp group, viral status video group">
+  <meta name="description" content="Join 100% active real WhatsApp groups on groupjoinlink.com. Discover links for Online Earning, Movies, Funny Videos, Friendship, Poetry, Girls Chat, Jobs, USA/UK, Trading, Islamic, and PUBG/Free Fire Gaming.">
+  <meta name="keywords" content="whatsapp group links, active whatsapp group link, online earning whatsapp groups, friendship whatsapp groups, poetry whatsapp groups, movies whatsapp group link, funny video whatsapp group, pakistani whatsapp group link, indian whatsapp group links, usa whatsapp group link, uk whatsapp group, job alerts whatsapp group, crypto trading signals, forex whatsapp group, pubg pakistan free fire groups, whatsapp group link join, status video whatsapp group, instagram reels whatsapp group, online earning app whatsapp group, student education whatsapp group, girls chat whatsapp group, sub4sub youtube whatsapp group, daily quran whatsapp group, viral status video group">
   <meta name="robots" content="index, follow">
 
   <!-- Sitemap & Canonical Links -->
@@ -27,8 +26,8 @@
   <!-- Open Graph / Facebook Meta Tags -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://groupjoinlink.com/" />
-  <meta property="og:title" content="Group Join Link - Videos, Earning, Friendship, Chatting, Jobs & Movies Groups" />
-  <meta property="og:description" content="Find and join 100% active WhatsApp groups for Jobs, Trading, Movies, Funny Videos, USA, UK, Islamic, and more on groupjoinlink.com." />
+  <meta property="og:title" content="Group Join Link - Videos, Earning, Friendship, Poetry, Chatting, Jobs & Movies Groups" />
+  <meta property="og:description" content="Find and join 100% active WhatsApp groups for Jobs, Trading, Movies, Poetry, Friendship, Funny Videos, USA, UK, Islamic, and more on groupjoinlink.com." />
   <meta property="og:image" content="https://groupjoinlink.com/1790478455723.jpg">
 
   <!-- Twitter Meta Tags -->
@@ -37,7 +36,6 @@
   <meta property="twitter:title" content="Group Join Link - Videos, Earning, Friendship, Chatting, Jobs & Movies Groups">
   <meta property="twitter:description" content="Find and join 100% active WhatsApp groups for Jobs, Trading, Movies, Funny Videos, USA, UK, Islamic, and more on groupjoinlink.com.">
   <meta property="twitter:image" content="https://groupjoinlink.com/1790478455723.jpg">
-
 
   <!-- Schema Structured Data -->
   <script type="application/ld+json">
@@ -160,6 +158,14 @@
       .admin-link-box { margin-top: 5px; font-size: 12px; color: #075e54; word-break: break-all; }
       .admin-link-box a { color: #3182ce; text-decoration: underline; }
       .clicks-badge { background: #edf2f7; color: #2d3748; padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; display: inline-block; margin-top: 5px; border: 1px solid #cbd5e0; }
+
+      /* FOOTER STYLING */
+      footer { background-color: #f8f9fa; padding: 30px 20px; text-align: center; border-top: 1px solid #e9ecef; margin-top: 40px; }
+      footer p { color: #4a5568; font-size: 14px; line-height: 1.6; margin-bottom: 12px; }
+      .footer-links { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 14px; margin-top: 15px; }
+      .footer-links a { color: #075e54; text-decoration: none; font-weight: 600; }
+      .footer-links a:hover { text-decoration: underline; }
+      .footer-links span { color: #cbd5e0; }
   </style>
 </head>
 <body>
@@ -223,8 +229,7 @@
             <input type="hidden" id="reportGroupId">
             <div class="form-group">
                 <label>Reason for Report</label>
-                <textarea id="reportReason" placeholder="Enter details why this group is invalid or broken..." style="resize: none;"></textarea>
-
+                <textarea id="reportReason" placeholder="Enter details why this group is invalid or broken..." style="resize: none;" rows="4"></textarea>
             </div>
             <button class="btn-banner btn-left" style="width:100%; margin-top:8px; background-color:#e53e3e;" onclick="sendReport()">Submit Report</button>
             <button class="btn-close" onclick="closeModal('reportModal')">Close</button>
@@ -342,8 +347,25 @@
         });
     }
 
+    function changeGroupCategory(groupId) {
+        const selectElem = document.getElementById('change-cat-' + groupId);
+        if (!selectElem) return;
+        
+        const newCat = selectElem.value;
+        db.ref('groups/' + groupId).update({
+            category: newCat
+        }).then(() => {
+            alert('✅ Category updated to: ' + newCat);
+            loadAdminTabContent();
+        }).catch((err) => {
+            alert('Failed to update category: ' + err.message);
+        });
+    }
+
     function deleteGroupAndReports(groupId) {
         if (!groupId) return;
+        if (!confirm("Are you sure you want to delete this group?")) return;
+
         db.ref('groups/' + groupId).remove();
         db.ref('reports').once('value', (snapshot) => {
             snapshot.forEach((child) => {
@@ -567,29 +589,26 @@
     }
     
     function sendReport() {
-    const id = document.getElementById('reportGroupId').value;
-    const reason = document.getElementById('reportReason').value.trim();
-    
-    if (!reason || !id) { 
-        alert('Please enter details!'); 
-        return; 
+        const id = document.getElementById('reportGroupId').value;
+        const reason = document.getElementById('reportReason').value.trim();
+        
+        if (!reason || !id) { 
+            alert('Please enter details!'); 
+            return; 
+        }
+
+        db.ref('reports').push({
+            groupId: id,
+            reason: reason,
+            timestamp: Date.now()
+        }).then(() => {
+            alert('✅ Report submitted successfully!');
+            document.getElementById('reportReason').value = '';
+            closeModal('reportModal');
+        }).catch((err) => {
+            alert('Report Error: ' + err.message);
+        });
     }
-
-    // Sirf report database me push hogi, group ka status change nahi hoga
-    db.ref('reports').push({
-        groupId: id,
-        reason: reason,
-        timestamp: Date.now()
-    }).then(() => {
-        alert('✅ Report submitted successfully!');
-        document.getElementById('reportReason').value = '';
-        closeModal('reportModal');
-    }).catch((err) => {
-        alert('Report Error: ' + err.message);
-    });
-}
-
-
 
     function switchAdminTab(tabName) {
         currentTab = tabName;
@@ -604,7 +623,10 @@
 
         if (currentTab === 'pending') {
             const list = allGroups.filter(g => g.status === 'pending');
-            if (list.length === 0) { container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No pending groups.</div>'; return; }
+            if (list.length === 0) { 
+                container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No pending groups.</div>'; 
+                return; 
+            }
             list.forEach(g => {
                 container.innerHTML += `
                     <div class="admin-item">
@@ -619,7 +641,7 @@
                     </div>
                 `;
             });
-                } else if (currentTab === 'approved') {
+        } else if (currentTab === 'approved') {
             const list = allGroups.filter(g => g.status === 'approved' || !g.status);
             if (list.length === 0) { 
                 container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No approved groups.</div>'; 
@@ -628,23 +650,35 @@
             list.forEach(g => {
                 const clickCount = g.clicks || 0;
 
+                const categoryOptionsHtml = categories.map(c => 
+                    `<option value="${c}" ${c === g.category ? 'selected' : ''}>${c}</option>`
+                ).join('');
+
                 container.innerHTML += `
                     <div class="admin-item">
                         <b>${escapeHTML(g.name)} (${escapeHTML(g.country || 'Global')})</b>
                         <div style="display: flex; gap: 10px; margin: 5px 0;">
                             <span class="clicks-badge">👁️ Total Clicks: ${clickCount}</span>
                         </div>
-                        <div class="admin-link-box">Category: ${escapeHTML(g.category || 'General')}</div>
+                        <div class="admin-link-box">Current Category: <b>${escapeHTML(g.category || 'General')}</b></div>
+                        
+                        <div style="margin: 8px 0;">
+                            <label style="font-size:11px; font-weight:bold; color:#4a5568;">Change Category:</label>
+                            <select id="change-cat-${g.id}" style="width:100%; padding:5px; font-size:12px; border-radius:4px; border:1px solid #cbd5e0; margin-top:3px;">
+                                ${categoryOptionsHtml}
+                            </select>
+                        </div>
+
                         <div class="admin-link-box">Link: <a href="${escapeHTML(g.link)}" target="_blank">${escapeHTML(g.link || 'No link')}</a></div>
                         <div class="admin-btn-row">
+                            <button class="btn-approve" style="background-color:#3182ce;" onclick="changeGroupCategory('${g.id}')">Update Cat</button>
                             <button class="btn-copy-admin" onclick="copyGroupLink('${escapeHTML(g.link)}')">📋 Copy Link</button>
                             <button class="btn-delete" onclick="deleteGroupAndReports('${g.id}')">Delete</button>
                         </div>
                     </div>
                 `;
             });
-
-                } else if (currentTab === 'reports') {
+        } else if (currentTab === 'reports') {
             if (allReports.length === 0) { 
                 container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No reports found.</div>'; 
                 return; 
@@ -654,7 +688,6 @@
                 const groupName = group ? group.name : 'Unknown Group';
                 const groupLink = group ? group.link : '';
                 
-                // Is group ki Kul (Total) Reports count calculate karein
                 const totalGroupReports = allReports.filter(rep => rep.groupId === r.groupId).length;
 
                 container.innerHTML += `
@@ -674,29 +707,35 @@
                 `;
             });
         }
-
     }
 
     window.onload = function() {
         populateDropdowns();
         fetchGroupsFromFirebase();
     };
-</script>
+    </script>
 
-
-      <!-- FOOTER TEXT SECTION -->
-    <footer data-nosnippet style="background-color: #f8f9fa; padding: 30px 20px; text-align: center; border-top: 1px solid #e9ecef; margin-top: 40px;">
+    <!-- FOOTER TEXT & LINKS SECTION -->
+    <footer data-nosnippet>
         <div style="max-width: 800px; margin: 0 auto;">
             <h3 style="color: #075e54; margin-bottom: 15px; font-size: 20px;">About Group Join Link</h3>
-            <p style="margin-bottom: 15px; line-height: 1.6; color: #4a5568; font-size: 14px;">
-                Welcome to <strong>Group Join Link</strong>, your ultimate directory for active and real WhatsApp group links worldwide. Easily browse and join active communities from Pakistan, India, Sri Lanka, Russia, USA, and across the globe in top categories including Online Earning, Jobs, Movies, Crypto Trading, Islamic Content, and Gaming.
+            <p>
+                Welcome to <strong>Group Join Link</strong>, your ultimate directory for active and real WhatsApp group links worldwide. Easily browse and join active communities from Pakistan, India, Sri Lanka, Russia, USA, and across the globe in top categories including Online Earning, Jobs, Friendship, Poetry, Movies, Crypto Trading, Islamic Content, and Gaming.
             </p>
-            <p style="font-size: 12px; color: #718096; margin-top: 10px;">
+            
+            <div class="footer-links">
+                <a href="about-us.html">About Us</a>
+                <span>|</span>
+                <a href="contact-us.html">Contact Us</a>
+                <span>|</span>
+                <a href="privacy-policy.html">Privacy Policy</a>
+            </div>
+
+            <p style="font-size: 12px; color: #718096; margin-top: 15px;">
                 &copy; 2026 Group Join Link - All Rights Reserved.
             </p>
         </div>
     </footer>
-
 
 </body>
 </html>
