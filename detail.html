@@ -15,7 +15,7 @@
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
 
-    <!-- Sitemap & Canonical Links -->
+    <!-- Sitemap & Canonical Links (All ranking consolidated to Main Index Page) -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://groupjoinlink.com/sitemap.xml" />
     <link rel="canonical" href="https://groupjoinlink.com/" />
 
@@ -351,8 +351,9 @@
         function loadGroupData() {
             const groupId = getQueryParam('id');
             
+            // REDIRECT TO INDEX PAGE IF DIRECTLY ACCESSED WITHOUT GROUP ID
             if (!groupId) {
-                document.getElementById('detailCard').innerHTML = '<p>Group Not Found!</p><a href="index.html" class="btn-back">⬅ Back to Home</a>';
+                window.location.replace("index.html");
                 return;
             }
 
@@ -377,8 +378,11 @@
                     group.id = snapshot.key;
                     renderGroupDetails(group);
                 } else {
-                    document.getElementById('detailCard').innerHTML = '<p>Group does not exist or was deleted.</p><a href="index.html" class="btn-back">⬅ Back to Home</a>';
+                    // IF GROUP IS NOT FOUND IN FIREBASE, REDIRECT TO MAIN INDEX PAGE
+                    window.location.replace("index.html");
                 }
+            }).catch(() => {
+                window.location.replace("index.html");
             });
         }
 
