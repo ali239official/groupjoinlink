@@ -12,7 +12,7 @@
   
   <!-- Primary SEO Meta Tags -->
 <meta name="title" content="Group Join Link - Unlimited Active WhatsApp Group Links 2026">
-<meta name="description" content="Join 100% active real WhatsApp group links on groupjoinlink.com. Discover active groups for Online Earning, Tech & Mobile, Jobs, Sports, Trading, Movies, Islamic, Gaming, Poetry, and Entertainment.">
+<meta name="description" content="Join 100% active real WhatsApp group links on groupjoinlink.com. Discover active groups for Online Earning, Tech & Mobile, Jobs, Sports, Trading, Movies, Islamic, Gaming, Friendship, Poetry, and Entertainment.">
 <meta name="keywords" content="whatsapp group links, active whatsapp group link, online earning whatsapp groups, tech and mobile whatsapp group, sports whatsapp group links, friendship whatsapp groups, poetry whatsapp groups, movies whatsapp group link, funny video whatsapp group, pakistani whatsapp group link, indian whatsapp group links, usa whatsapp group link, job alerts whatsapp group, crypto trading signals, forex whatsapp group, pubg pakistan free fire groups, islamic whatsapp group links, whatsapp group link join, status video whatsapp group, instagram reels whatsapp group, daily quran whatsapp group, viral status video group">
 <meta name="robots" content="index, follow">
 
@@ -28,7 +28,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://groupjoinlink.com/" />
 <meta property="og:title" content="Group Join Link - Active WhatsApp Group Links 2026" />
-<meta property="og:description" content="Find and join 100% active WhatsApp group links for Earning, Tech, Jobs, Sports, Trading, Movies, Islamic, Gaming & Poetry on groupjoinlink.com." />
+<meta property="og:description" content="Find and join 100% active WhatsApp group links for Earning, Tech, Jobs, Sports, Friendship, Trading, Movies, Islamic, Gaming & Poetry on groupjoinlink.com." />
 <meta property="og:image" content="https://groupjoinlink.com/1790478455723.jpg" />
 <meta property="og:image:secure_url" content="https://groupjoinlink.com/1790478455723.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
@@ -185,6 +185,18 @@
             <button class="btn-banner btn-right" onclick="openModal('submitModal')">Submit Group</button>
         </div>
     </div>
+      <!-- WELCOME / INTRO TEXT SECTION -->
+    <div style="max-width: 700px; margin: 15px auto 0; padding: 0 12px;">
+        <div style="background: white; border-radius: 10px; padding: 15px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center;">
+            <h2 style="font-size: 16px; color: #075e54; margin-bottom: 8px; font-weight: bold;">
+                Find & Join Active WhatsApp Groups 2026
+            </h2>
+            <p style="font-size: 13px; color: #4a5568; line-height: 1.5;">
+                Discover unlimited active WhatsApp group join links updated daily. Connect with verified communities for earning, jobs, friendship, sports, tech, poetry, and entertainment with just one click.
+            </p>
+        </div>
+    </div>
+
 
     <!-- MAIN CATEGORIES & GROUPS -->
     <div class="container" id="categoriesContainer">
@@ -381,11 +393,12 @@
         });
     }
 
-    function fetchGroupsFromFirebase() {
+            function fetchGroupsFromFirebase() {
         const cachedData = localStorage.getItem('fast_cached_groups');
         if (cachedData) {
             try {
-                allGroups = JSON.parse(cachedData);
+                let parsed = JSON.parse(cachedData);
+                allGroups = parsed.filter(g => g.link && g.link.trim() !== '' && g.link !== 'No link');
                 allGroups.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
                 renderMainCategories();
             } catch(e){}
@@ -396,7 +409,9 @@
             snapshot.forEach((child) => {
                 let g = child.val();
                 g.id = child.key;
-                allGroups.push(g);
+                if (g.link && g.link.trim() !== '' && g.link !== 'No link') {
+                    allGroups.push(g);
+                }
             });
             
             allGroups.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
@@ -426,6 +441,8 @@
             }
         });
     }
+
+
 
     function renderMainCategories() {
         const container = document.getElementById('categoriesContainer');
@@ -534,7 +551,7 @@
         }
     }
 
-    function submitGroup() {
+            function submitGroup() {
       const name = document.getElementById('subName').value.trim();
       const category = document.getElementById('subCategory').value;
       const country = document.getElementById('subCountry').value;
@@ -542,6 +559,11 @@
 
       if (!name || !link || !category || !country) {
         alert('Please fill in all fields!');
+        return;
+      }
+
+      if (!link.includes("chat.whatsapp.com")) {
+        alert('⚠️ Please enter a valid WhatsApp Group Link!');
         return;
       }
 
@@ -554,7 +576,7 @@
 
       const isDuplicate = allGroups.some(g => g.link && g.link.trim().toLowerCase() === link.toLowerCase());
       if (isDuplicate) {
-        alert('⚠️ Yeh WhatsApp group link pehle se submit hua parha hai!');
+        alert('⚠️ This WhatsApp group link has already been submitted!');
         return;
       }
 
@@ -581,11 +603,14 @@
         closeModal('submitModal');
         document.getElementById('subName').value = '';
         document.getElementById('subLink').value = '';
-        populateDropdowns();
+        document.getElementById('subCategory').selectedIndex = 0;
+        document.getElementById('subCountry').selectedIndex = 0;
       }).catch(err => {
         alert('Submission Failed: ' + err.message);
       });
     }
+
+
 
     function openReportModal(id) { 
         document.getElementById('reportGroupId').value = id; 
