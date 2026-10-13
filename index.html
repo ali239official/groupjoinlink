@@ -115,6 +115,15 @@
       .btn-click-join { background: #25d366; color: white; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; white-space: nowrap; }
       .btn-report-mini { background: none; border: none; color: #e53e3e; font-size: 12px; cursor: pointer; font-weight: 600; text-decoration: underline; }
 
+      /* FIXED HEIGHT AD CONTAINER TO PREVENT LAYOUT SHIFT */
+      .ad-box-container {
+          min-height: 250px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+      }
+
       /* SKELETON ANIMATION */
       .skeleton-sec {
           background: white;
@@ -192,18 +201,20 @@
     <div style="max-width: 700px; margin: 15px auto 0; padding: 0 12px;">
         <div style="background: white; border-radius: 10px; padding: 15px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center;">
             
-            <!-- Banner Ad Code Inside White Box (Above Text) -->
-            <div style="text-align: center; margin-bottom: 15px;">
-                <script>
-                    atOptions = {
-                        'key' : 'e5f1ad5ae6cce357502d1a4b4f678442',
-                        'format' : 'iframe',
-                        'height' : 250,
-                        'width' : 300,
-                        'params' : {}
-                    };
-                </script>
-                <script src="https://bicea.org/22/e5f1ad5ae6cce357502d1a4b4f678442"></script>
+            <!-- Banner Ad Code Inside White Box (Above Text) with Fixed Height Class -->
+            <div class="ad-box-container" style="margin-bottom: 15px;">
+                <div style="text-align: center; width: 100%;">
+                    <script>
+                        atOptions = {
+                            'key' : 'e5f1ad5ae6cce357502d1a4b4f678442',
+                            'format' : 'iframe',
+                            'height' : 250,
+                            'width' : 300,
+                            'params' : {}
+                        };
+                    </script>
+                    <script src="https://bicea.org/22/e5f1ad5ae6cce357502d1a4b4f678442"></script>
+                </div>
             </div>
 
             <h2 style="font-size: 16px; color: #075e54; margin-bottom: 8px; font-weight: bold;">
@@ -400,13 +411,15 @@
         if (!groupId) return;
         if (!confirm("Are you sure you want to delete this group?")) return;
 
-        db.ref('groups/' + groupId).remove();
-        db.ref('reports').once('value', (snapshot) => {
-            snapshot.forEach((child) => {
-                if (child.val().groupId === groupId) {
-                    db.ref('reports/' + child.key).remove();
-                }
+        db.ref('groups/' + groupId).remove().then(() => {
+            db.ref('reports').orderByChild('groupId').equalTo(groupId).once('value', snapshot => {
+                snapshot.forEach(child => {
+                    child.ref.remove();
+                });
             });
+            alert('Group deleted successfully!');
+        }).catch(err => {
+            alert('Error deleting group: ' + err.message);
         });
     }
 
@@ -758,22 +771,24 @@
     };
     </script>
 
-        <!-- FOOTER TEXT & LINKS SECTION WITH BANNER AD -->
+    <!-- FOOTER TEXT & LINKS SECTION WITH BANNER AD -->
     <footer data-nosnippet>
         <div style="max-width: 800px; margin: 0 auto;">
             
-            <!-- Banner Ad Code (Footer Text ke Upar) -->
-            <div style="text-align: center; margin-bottom: 25px;">
-                <script>
-                    atOptions = {
-                        'key' : 'e5f1ad5ae6cce357502d1a4b4f678442',
-                        'format' : 'iframe',
-                        'height' : 250,
-                        'width' : 300,
-                        'params' : {}
-                    };
-                </script>
-                <script src="https://bicea.org/22/e5f1ad5ae6cce357502d1a4b4f678442"></script>
+            <!-- Banner Ad Code (Footer Text ke Upar) with Fixed Height Class -->
+            <div class="ad-box-container" style="margin-bottom: 25px;">
+                <div style="text-align: center; width: 100%;">
+                    <script>
+                        atOptions = {
+                            'key' : 'e5f1ad5ae6cce357502d1a4b4f678442',
+                            'format' : 'iframe',
+                            'height' : 250,
+                            'width' : 300,
+                            'params' : {}
+                        };
+                    </script>
+                    <script src="https://bicea.org/22/e5f1ad5ae6cce357502d1a4b4f678442"></script>
+                </div>
             </div>
 
             <h3 style="color: #075e54; margin-bottom: 15px; font-size: 20px;">About Group Join Link</h3>
@@ -795,6 +810,6 @@
         </div>
     </footer>
 
-
 </body>
 </html>
+ 
