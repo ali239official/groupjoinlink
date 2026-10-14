@@ -67,7 +67,7 @@
       * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
       body { background-color: #f0f2f5; color: #1c1e21; padding-bottom: 30px; }
 
-      /* TOP NAVBAR STYLING (DOWNLOAD BUTTON GREEN COLOR & NO TOP GAP) */
+      /* TOP NAVBAR STYLING */
       .main-navbar {
           background-color: #25d366;
           color: white;
@@ -84,7 +84,6 @@
           font-weight: bold;
           font-style: italic;
           letter-spacing: 0.5px;
-          cursor: pointer;
       }
 
       .top-green-section { 
@@ -158,7 +157,6 @@
       .btn-click-join { background: #25d366; color: white; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; white-space: nowrap; }
       .btn-report-mini { background: none; border: none; color: #e53e3e; font-size: 12px; cursor: pointer; font-weight: 600; text-decoration: underline; }
 
-      /* FIXED HEIGHT AD CONTAINER TO PREVENT LAYOUT SHIFT */
       .ad-box-container {
           min-height: 250px;
           display: flex;
@@ -167,7 +165,6 @@
           overflow: hidden;
       }
 
-      /* SKELETON ANIMATION */
       .skeleton-sec {
           background: white;
           border-radius: 10px;
@@ -218,7 +215,6 @@
       .admin-link-box a { color: #3182ce; text-decoration: underline; }
       .clicks-badge { background: #edf2f7; color: #2d3748; padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; display: inline-block; margin-top: 5px; border: 1px solid #cbd5e0; }
 
-      /* FOOTER STYLING */
       footer { background-color: #f8f9fa; padding: 30px 20px; text-align: center; border-top: 1px solid #e9ecef; margin-top: 40px; }
       footer p { color: #4a5568; font-size: 14px; line-height: 1.6; margin-bottom: 12px; }
       .footer-links { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 14px; margin-top: 15px; }
@@ -226,7 +222,6 @@
       .footer-links a:hover { text-decoration: underline; }
       .footer-links span { color: #cbd5e0; }
 
-      /* ADSTERRA SOCIAL BAR FORCED TOP FIX */
       iframe[src*="bicea.org"], 
       div[style*="z-index: 2147483647"], 
       div[style*="z-index:2147483647"] {
@@ -238,14 +233,13 @@
           bottom: auto !important;
           z-index: 2147483647 !important;
       }
-</style>
-
+  </style>
 </head>
 <body>
 
-    <!-- TOP NAVBAR (GROUP JOIN LINK WITH 4-TAP ADMIN TRIGGER) -->
+    <!-- TOP NAVBAR -->
     <div class="main-navbar">
-        <div class="nav-brand" id="siteTitle">Group Join Link</div>
+        <div class="nav-brand">Group Join Link</div>
     </div>
 
     <!-- GREEN TOP SECTION -->
@@ -254,11 +248,10 @@
         <h2>Active Whatsapp group</h2>
     </div>
 
-    <!-- WELCOME / INTRO TEXT SECTION WITH BANNER AD & BUTTONS -->
+    <!-- WELCOME SECTION WITH AD & BUTTONS -->
     <div style="max-width: 700px; margin: 15px auto 0; padding: 0 12px;">
         <div style="background: white; border-radius: 10px; padding: 15px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center;">
             
-            <!-- Banner Ad Code Inside White Box -->
             <div class="ad-box-container" style="margin-bottom: 15px;">
                 <div style="text-align: center; width: 100%;">
                     <script>
@@ -281,7 +274,6 @@
                 Discover unlimited active WhatsApp group join links updated daily. Connect with verified communities for earning, jobs, friendship, sports, tech, trading, movies, islamic, gaming, poetry, and entertainment easily.
             </p>
 
-            <!-- COMMUNITY & SUBMIT BUTTONS -->
             <div class="hero-btns">
                 <a href="https://whatsapp.com/channel/0029Vb8rlsx7T8bfdsy24Z17" target="_blank" class="btn-banner btn-left">Join Our Community</a>
                 <button class="btn-banner btn-right" style="background-color: #075e54; color: white;" onclick="openModal('submitModal')">Submit Group</button>
@@ -290,7 +282,7 @@
         </div>
     </div>
 
-    <!-- MAIN CATEGORIES & GROUPS -->
+    <!-- MAIN CATEGORIES CONTAINER -->
     <div class="container" id="categoriesContainer">
         <div class="skeleton-sec">
             <div class="skeleton-head"></div>
@@ -379,7 +371,7 @@
         "India", "Pakistan", "Nigeria", "Sri Lanka" , "Indonesia", "Brazil", 
         "Bangladesh", "Afghanistan", "Egypt", "Saudi Arabia", "UAE (Dubai)", "Kenya", 
         "Ghana", "South Africa", "Nepal", "Malaysia","Russia" , "Philippines", 
-        "Iraq", "Algeria", "Turkey", "New York" , "Morocco", "Qatar" , "United State" , "United Kindom" , "Other Country"
+        "Iraq", "Algeria", "Turkey", "New York" , "Morocco", "Qatar" , "United State" , "United Kingdom" , "Other Country"
     ];
 
     const blockedKeywords = ["xxx", "sexy", "hot", "girls", "18+", "adult", "sex", "nude", "porn"];
@@ -425,15 +417,16 @@
         }
     }
 
+    /* 4-TAP TRIGGER FUNCTION FOR FOOTER HEADING */
     let tapCount = 0, tapTimer = null;
-    const titleElem = document.getElementById('siteTitle');
-    if (titleElem) {
-        titleElem.addEventListener('click', function() {
-            tapCount++; 
-            clearTimeout(tapTimer);
-            tapTimer = setTimeout(() => { tapCount = 0; }, 2000);
-            if (tapCount === 4) { tapCount = 0; openModal('adminLoginModal'); }
-        });
+    function handleAdminTap() {
+        tapCount++;
+        clearTimeout(tapTimer);
+        tapTimer = setTimeout(() => { tapCount = 0; }, 2000);
+        if (tapCount === 4) {
+            tapCount = 0;
+            openModal('adminLoginModal');
+        }
     }
 
     function checkAdminLogin() {
@@ -453,6 +446,35 @@
             alert('Link Copied Successfully!');
         }).catch(err => {
             alert('Failed to copy link');
+        });
+    }
+
+    function changeGroupCategory(groupId) {
+        const selectElem = document.getElementById('change-cat-' + groupId);
+        if (!selectElem) return;
+        const newCategory = selectElem.value;
+        
+        db.ref('groups/' + groupId).update({
+            category: newCategory
+        }).then(() => {
+            alert('✅ Category updated successfully!');
+        }).catch((err) => {
+            alert('Error updating category: ' + err.message);
+        });
+    }
+
+    function deleteGroupAndReports(groupId) {
+        if (!confirm('Are you sure you want to delete this group?')) return;
+
+        db.ref('groups/' + groupId).remove().then(() => {
+            allReports.forEach(r => {
+                if (r.groupId === groupId) {
+                    db.ref('reports/' + r.id).remove();
+                }
+            });
+            alert('🗑️ Group deleted successfully!');
+        }).catch((err) => {
+            alert('Error deleting group: ' + err.message);
         });
     }
 
@@ -804,11 +826,10 @@
     };
     </script>
 
-    <!-- FOOTER TEXT & LINKS SECTION WITH BANNER AD -->
+    <!-- FOOTER SECTION -->
     <footer data-nosnippet>
         <div style="max-width: 800px; margin: 0 auto;">
             
-            <!-- Banner Ad Code (Footer Text ke Upar) with Fixed Height Class -->
             <div class="ad-box-container" style="margin-bottom: 25px;">
                 <div style="text-align: center; width: 100%;">
                     <script>
@@ -824,7 +845,8 @@
                 </div>
             </div>
 
-            <h3 style="color: #075e54; margin-bottom: 15px; font-size: 20px;">About Group Join Link</h3>
+            <!-- ABOUT HEADING WITH 4-TAP TRIGGER -->
+            <h3 id="footerAboutTitle" onclick="handleAdminTap()" style="color: #075e54; margin-bottom: 15px; font-size: 20px; cursor: pointer; user-select: none;">About Group Join Link</h3>
             <p>
                 Welcome to <strong>Group Join Link</strong>, your ultimate directory for active and real WhatsApp group links worldwide. Easily browse and join active communities from Pakistan, India, Sri Lanka, Russia, USA, and across the globe in top categories including Online Earning, Jobs, Friendship, Poetry, Movies, Crypto Trading, Islamic Content, and Gaming.
             </p>
