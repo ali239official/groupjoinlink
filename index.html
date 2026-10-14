@@ -65,31 +65,46 @@
 
   <style>
       * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-      
-      /* PURANA WALA ORIGINAL BACKGROUND COLOR RESTORED */
       body { background-color: #f0f2f5; color: #1c1e21; padding-bottom: 30px; }
+
+      /* TOP NAVBAR STYLING (DOWNLOAD BUTTON GREEN COLOR & NO TOP GAP) */
+      .main-navbar {
+          background-color: #25d366;
+          color: white;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 12px 18px;
+          width: 100%;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+          margin-top: 0 !important;
+      }
+      .nav-brand {
+          font-size: 20px;
+          font-weight: bold;
+          font-style: italic;
+          letter-spacing: 0.5px;
+          cursor: pointer;
+      }
 
       .top-green-section { 
           background: #075e54; 
           color: white; 
-          padding: 30px 15px 35px; 
+          padding: 25px 15px; 
           text-align: center; 
           box-shadow: 0 2px 8px rgba(0,0,0,0.2); 
           position: relative;
-          margin-top: 55px !important; 
+          margin-top: 0 !important; 
       }
       .top-green-section h1 { 
           font-size: 22px; 
           font-weight: 700; 
           margin-bottom: 6px; 
-          cursor: pointer; 
-          user-select: none;
       }
       .top-green-section h2 { 
           font-size: 15px; 
           font-weight: 400; 
           opacity: 0.9; 
-          margin-bottom: 18px; 
       }
 
       .hero-btns { 
@@ -97,14 +112,29 @@
           justify-content: space-between; 
           align-items: center; 
           max-width: 600px; 
-          margin: 0 auto; 
-          gap: 12px; 
+          margin: 15px auto 0; 
+          gap: 10px; 
           position: relative;
           z-index: 999;
       }
-      .btn-banner { flex: 1; padding: 12px 8px; border-radius: 6px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; font-size: 13px; text-align: center; }
+      .btn-banner { 
+          flex: 1; 
+          padding: 12px 6px; 
+          border-radius: 6px; 
+          font-weight: bold; 
+          text-decoration: none; 
+          border: none; 
+          cursor: pointer; 
+          font-size: 12px; 
+          text-align: center; 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          min-height: 48px; 
+          white-space: nowrap;
+      }
       .btn-left { background-color: #25d366; color: white; }
-      .btn-right { background-color: #ffffff; color: #075e54; }
+      .btn-right { background-color: #075e54; color: white; border: 1px solid #25d366; }
 
       .container { max-width: 700px; margin: 20px auto 0; padding: 0 12px; }
       
@@ -196,34 +226,39 @@
       .footer-links a:hover { text-decoration: underline; }
       .footer-links span { color: #cbd5e0; }
 
-      /* ADSTERRA SOCIAL BAR POSITIONING FIX (Top) */
+      /* ADSTERRA SOCIAL BAR FORCED TOP FIX */
       iframe[src*="bicea.org"], 
       div[style*="z-index: 2147483647"], 
       div[style*="z-index:2147483647"] {
-          top: 0px !important;
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          width: 100% !important;
           bottom: auto !important;
+          z-index: 2147483647 !important;
       }
 </style>
 
 </head>
 <body>
 
-    <!-- GREEN TOP SECTION -->
-    <div class="top-green-section">
-        <h1 id="siteTitle">Whats Group Join Links</h1>
-        <h2>Active Whatsapp group</h2>
-
-        <div class="hero-btns">
-            <a href="https://whatsapp.com/channel/0029Vb8rlsx7T8bfdsy24Z17" target="_blank" class="btn-banner btn-left">Join Our Community</a>
-            <button class="btn-banner btn-right" onclick="openModal('submitModal')">Submit Group</button>
-        </div>
+    <!-- TOP NAVBAR (GROUP JOIN LINK WITH 4-TAP ADMIN TRIGGER) -->
+    <div class="main-navbar">
+        <div class="nav-brand" id="siteTitle">Group Join Link</div>
     </div>
 
-    <!-- WELCOME / INTRO TEXT SECTION WITH BANNER AD -->
+    <!-- GREEN TOP SECTION -->
+    <div class="top-green-section">
+        <h1>Whats Group Join Links</h1>
+        <h2>Active Whatsapp group</h2>
+    </div>
+
+    <!-- WELCOME / INTRO TEXT SECTION WITH BANNER AD & BUTTONS -->
     <div style="max-width: 700px; margin: 15px auto 0; padding: 0 12px;">
         <div style="background: white; border-radius: 10px; padding: 15px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center;">
             
-            <!-- Banner Ad Code Inside White Box (Above Text) with Fixed Height Class -->
+            <!-- Banner Ad Code Inside White Box -->
             <div class="ad-box-container" style="margin-bottom: 15px;">
                 <div style="text-align: center; width: 100%;">
                     <script>
@@ -242,9 +277,16 @@
             <h2 style="font-size: 16px; color: #075e54; margin-bottom: 8px; font-weight: bold;">
                 Find & Join Active WhatsApp Groups 2026
             </h2>
-            <p style="font-size: 13px; color: #4a5568; line-height: 1.5;">
+            <p style="font-size: 13px; color: #4a5568; line-height: 1.5; margin-bottom: 15px;">
                 Discover unlimited active WhatsApp group join links updated daily. Connect with verified communities for earning, jobs, friendship, sports, tech, trading, movies, islamic, gaming, poetry, and entertainment easily.
             </p>
+
+            <!-- COMMUNITY & SUBMIT BUTTONS -->
+            <div class="hero-btns">
+                <a href="https://whatsapp.com/channel/0029Vb8rlsx7T8bfdsy24Z17" target="_blank" class="btn-banner btn-left">Join Our Community</a>
+                <button class="btn-banner btn-right" style="background-color: #075e54; color: white;" onclick="openModal('submitModal')">Submit Group</button>
+            </div>
+
         </div>
     </div>
 
