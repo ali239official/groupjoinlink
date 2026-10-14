@@ -9,7 +9,8 @@
   <!-- BROWSER TAB LOGO (FAVICON) -->
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
-    <!-- Primary SEO Meta Tags -->
+
+  <!-- Primary SEO Meta Tags -->
   <meta name="title" content="Group Join Link - Unlimited Active WhatsApp Group Links 2026">
   <meta name="description" content="Join 100% active real WhatsApp group links on groupjoinlink.com. Discover active groups for Videos, Chatting, Viral, Online Earning, Tech & Mobile, Jobs, Sports, Trading, Movies, Islamic, Gaming, Friendship, Poetry, and Entertainment easily.">
   <meta name="keywords" content="videos whatsapp group, chatting whatsapp group, viral whatsapp groups, girls whatsapp group link, whatsapp group links, active whatsapp group link, online earning whatsapp groups, tech and mobile whatsapp group, sports whatsapp group links, friendship whatsapp groups, poetry whatsapp groups, movies whatsapp group link, trading whatsapp group, islamic whatsapp group links, gaming whatsapp groups, pakistani whatsapp group link, indian whatsapp group links, usa whatsapp group link, job alerts whatsapp group, crypto trading signals, forex whatsapp group, pubg pakistan free fire groups, whatsapp group link join, daily quran whatsapp group">
@@ -232,6 +233,12 @@
           bottom: auto !important;
           z-index: 2147483647 !important;
       }
+
+      /* ADMIN DASHBOARD OPEN HONE PAR FLOATING AD HIDE RULE */
+      body.admin-mode-active iframe[src*="bicea.org"],
+      body.admin-mode-active div[style*="z-index: 2147483647"] {
+          display: none !important;
+      }
   </style>
 </head>
 <body>
@@ -359,7 +366,7 @@
                 <button class="tab-btn" id="tab-reports" onclick="switchAdminTab('reports')">Reports</button>
             </div>
             <div class="admin-list" id="adminListContainer"></div>
-            <button class="btn-close" onclick="closeModal('adminDashboardModal')">Exit Dashboard</button>
+            <button class="btn-close" onclick="closeAdminDashboard()">Exit Dashboard</button>
         </div>
     </div>
 
@@ -432,11 +439,17 @@
         const pass = document.getElementById('adminPass').value;
         if (pass === "ali50") {
             closeModal('adminLoginModal');
+            document.body.classList.add('admin-mode-active'); // Ads Hide Karega
             openModal('adminDashboardModal');
             loadAdminTabContent();
         } else {
             alert('Wrong Password!');
         }
+    }
+
+    function closeAdminDashboard() {
+        document.body.classList.remove('admin-mode-active'); // Ads Wapas Show Karega
+        closeModal('adminDashboardModal');
     }
 
     function copyGroupLink(link) {
@@ -862,7 +875,3 @@
                 &copy; 2026 Group Join Link - All Rights Reserved.
             </p>
         </div>
-    </footer>
-
-</body>
-</html>
