@@ -103,7 +103,6 @@
       .btn-left { background-color: #25d366; color: white; }
       .btn-right { background-color: #ffffff; color: #075e54; }
 
-
       .container { max-width: 700px; margin: 20px auto 0; padding: 0 12px; }
       
       .category-sec { background: white; border-radius: 10px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
@@ -406,40 +405,9 @@
     function copyGroupLink(link) {
         if(!link) { alert('No link available'); return; }
         navigator.clipboard.writeText(link).then(() => {
-            alert('📋 WhatsApp Group Link Copied!');
-        }).catch(() => {
-            alert('Failed to copy link');
-        });
-    }
-
-    function changeGroupCategory(groupId) {
-        const selectElem = document.getElementById('change-cat-' + groupId);
-        if (!selectElem) return;
-        
-        const newCat = selectElem.value;
-        db.ref('groups/' + groupId).update({
-            category: newCat
-        }).then(() => {
-            alert('✅ Category updated to: ' + newCat);
-            loadAdminTabContent();
-        }).catch((err) => {
-            alert('Failed to update category: ' + err.message);
-        });
-    }
-
-    function deleteGroupAndReports(groupId) {
-        if (!groupId) return;
-        if (!confirm("Are you sure you want to delete this group?")) return;
-
-        db.ref('groups/' + groupId).remove().then(() => {
-            db.ref('reports').orderByChild('groupId').equalTo(groupId).once('value', snapshot => {
-                snapshot.forEach(child => {
-                    child.ref.remove();
-                });
-            });
-            alert('Group deleted successfully!');
+            alert('Link Copied Successfully!');
         }).catch(err => {
-            alert('Error deleting group: ' + err.message);
+            alert('Failed to copy link');
         });
     }
 
@@ -832,4 +800,4 @@
 
 </body>
 </html>
- 
+       
