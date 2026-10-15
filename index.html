@@ -233,12 +233,6 @@
           bottom: auto !important;
           z-index: 2147483647 !important;
       }
-
-      /* ADMIN DASHBOARD OPEN HONE PAR FLOATING AD HIDE RULE */
-      body.admin-mode-active iframe[src*="bicea.org"],
-      body.admin-mode-active div[style*="z-index: 2147483647"] {
-          display: none !important;
-      }
   </style>
 </head>
 <body>
@@ -366,7 +360,7 @@
                 <button class="tab-btn" id="tab-reports" onclick="switchAdminTab('reports')">Reports</button>
             </div>
             <div class="admin-list" id="adminListContainer"></div>
-            <button class="btn-close" onclick="closeAdminDashboard()">Exit Dashboard</button>
+            <button class="btn-close" onclick="closeModal('adminDashboardModal')">Exit Dashboard</button>
         </div>
     </div>
 
@@ -439,17 +433,11 @@
         const pass = document.getElementById('adminPass').value;
         if (pass === "ali50") {
             closeModal('adminLoginModal');
-            document.body.classList.add('admin-mode-active'); // Ads Hide Karega
             openModal('adminDashboardModal');
             loadAdminTabContent();
         } else {
             alert('Wrong Password!');
         }
-    }
-
-    function closeAdminDashboard() {
-        document.body.classList.remove('admin-mode-active'); // Ads Wapas Show Karega
-        closeModal('adminDashboardModal');
     }
 
     function copyGroupLink(link) {
@@ -875,3 +863,7 @@
                 &copy; 2026 Group Join Link - All Rights Reserved.
             </p>
         </div>
+    </footer>
+
+</body>
+</html>
