@@ -165,7 +165,7 @@
           overflow: hidden;
       }
 
-      /* CLEAN SKELETON STYLES WITHOUT UNWANTED COLORS */
+      /* SKELETON STYLES */
       .skeleton-sec {
           background: white;
           border-radius: 10px;
@@ -300,34 +300,9 @@
         </div>
     </div>
 
-    <!-- MAIN CATEGORIES CONTAINER WITH CLEAN SKELETON PLACEHOLDER -->
+    <!-- MAIN CATEGORIES CONTAINER -->
     <div class="container" id="categoriesContainer">
-        <div class="skeleton-sec">
-            <div class="skeleton-header-line"></div>
-            <div class="skeleton-row">
-                <div class="skeleton-line"></div>
-                <div class="skeleton-btn"></div>
-            </div>
-            <div class="skeleton-row">
-                <div class="skeleton-line"></div>
-                <div class="skeleton-btn"></div>
-            </div>
-            <div class="skeleton-row">
-                <div class="skeleton-line"></div>
-                <div class="skeleton-btn"></div>
-            </div>
-        </div>
-        <div class="skeleton-sec">
-            <div class="skeleton-header-line"></div>
-            <div class="skeleton-row">
-                <div class="skeleton-line"></div>
-                <div class="skeleton-btn"></div>
-            </div>
-            <div class="skeleton-row">
-                <div class="skeleton-line"></div>
-                <div class="skeleton-btn"></div>
-            </div>
-        </div>
+        <!-- Dynamic Skeleton Loader will be inserted here automatically -->
     </div>
 
     <!-- SUBMIT GROUP MODAL -->
@@ -449,6 +424,35 @@
         }
     }
 
+    /* SHOW SKELETON LOADER FOR ALL CATEGORIES INITIALLY */
+    function showSkeletonLoader() {
+        const container = document.getElementById('categoriesContainer');
+        if (!container) return;
+        
+        let skeletonHTML = '';
+        // 4 categories ke skeleton boxes render kar rahe hain taake achhi look aaye
+        for (let i = 0; i < 4; i++) {
+            skeletonHTML += `
+                <div class="skeleton-sec">
+                    <div class="skeleton-header-line"></div>
+                    <div class="skeleton-row">
+                        <div class="skeleton-line"></div>
+                        <div class="skeleton-btn"></div>
+                    </div>
+                    <div class="skeleton-row">
+                        <div class="skeleton-line"></div>
+                        <div class="skeleton-btn"></div>
+                    </div>
+                    <div class="skeleton-row">
+                        <div class="skeleton-line"></div>
+                        <div class="skeleton-btn"></div>
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = skeletonHTML;
+    }
+
     /* 4-TAP TRIGGER FUNCTION FOR FOOTER HEADING */
     let tapCount = 0, tapTimer = null;
     function handleAdminTap() {
@@ -519,6 +523,8 @@
                 allGroups.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
                 renderMainCategories();
             } catch(e){}
+        } else {
+            showSkeletonLoader();
         }
 
         db.ref('groups').on('value', (snapshot) => {
@@ -899,4 +905,3 @@ function toggleShowMore(categoryName) {
 
 </body>
 </html>
- 
