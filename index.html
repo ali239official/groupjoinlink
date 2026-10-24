@@ -252,6 +252,18 @@
           bottom: auto !important;
           z-index: 2147483647 !important;
       }
+            @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: 200px 0; }
+        }
+        .skeleton-box {
+            background: #f6f7f8;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 400px 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 6px;
+        }
+
   </style>
 </head>
 <body>
@@ -384,7 +396,7 @@
     const blockedKeywords = ["xxx", "sexy", "hot", "girls", "18+", "adult", "sex", "nude", "porn"];
     const positiveKeywords = ["islam", "deen", "quran", "hadith", "sunnah", "madani", "naat", "bayan", "islamic", "allah"];
 
-    const firebaseConfig = {
+      const firebaseConfig = {
       apiKey: "AIzaSyA3IddMLRa2hilO7aoCWFi1T4jzUHjAK48",
       authDomain: "whatsapp-directory-fa7b9.firebaseapp.com",
       databaseURL: "https://whatsapp-directory-fa7b9-default-rtdb.firebaseio.com",
@@ -788,7 +800,7 @@ function submitGroup() {
                     </div>
                 `;
             });
-        } else if (currentTab === 'approved') {
+          } else if (currentTab === 'approved') {
             const list = allGroups.filter(g => g.status === 'approved' || !g.status);
             if (list.length === 0) { 
                 container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No approved groups.</div>'; 
