@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
@@ -68,7 +67,6 @@
       * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
       body { background-color: #f0f2f5; color: #1c1e21; padding-bottom: 30px; }
 
-      /* TOP NAVBAR STYLING */
       .main-navbar {
           background-color: #25d366;
           color: white;
@@ -78,7 +76,6 @@
           padding: 12px 18px;
           width: 100%;
           box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-          margin-top: 0 !important;
       }
       .nav-brand {
           font-size: 20px;
@@ -93,8 +90,6 @@
           padding: 25px 15px; 
           text-align: center; 
           box-shadow: 0 2px 8px rgba(0,0,0,0.2); 
-          position: relative;
-          margin-top: 0 !important; 
       }
       .top-green-section h1 { 
           font-size: 20px; 
@@ -109,8 +104,6 @@
           max-width: 600px; 
           margin: 15px auto 0; 
           gap: 10px; 
-          position: relative;
-          z-index: 999;
       }
       .btn-banner { 
           flex: 1; 
@@ -131,13 +124,7 @@
       .btn-left { background-color: #25d366; color: white; }
       .btn-right { background-color: #075e54; color: white; border: 1px solid #25d366; }
 
-      /* PREVENT PAGE JUMPING / CLS */
-      .container { 
-          max-width: 700px; 
-          margin: 20px auto 0; 
-          padding: 0 12px; 
-          min-height: 700px; 
-      }
+      .container { max-width: 700px; margin: 20px auto 0; padding: 0 12px; }
       
       .category-sec { background: white; border-radius: 10px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
       .category-header { border-bottom: 2px solid #25d366; padding-bottom: 8px; margin-bottom: 12px; }
@@ -159,60 +146,6 @@
       .btn-click-join { background: #25d366; color: white; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; white-space: nowrap; }
       .btn-report-mini { background: none; border: none; color: #e53e3e; font-size: 12px; cursor: pointer; font-weight: 600; text-decoration: underline; }
 
-      .ad-box-container {
-          min-height: 250px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          overflow: hidden;
-      }
-
-      /* SKELETON STYLES */
-      .skeleton-sec {
-          background: white;
-          border-radius: 10px;
-          padding: 16px;
-          margin-bottom: 20px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      }
-      .skeleton-header-line {
-          height: 20px;
-          width: 40%;
-          background: #e0e0e0;
-          margin-bottom: 12px;
-          border-radius: 4px;
-      }
-      .skeleton-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background: #fafafa;
-          padding: 12px 14px;
-          border-radius: 8px;
-          border: 1px solid #e2e8f0;
-          margin-bottom: 10px;
-      }
-      .skeleton-line {
-          height: 16px;
-          width: 60%;
-          background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
-          background-size: 200% 100%;
-          animation: loading 1.2s infinite;
-          border-radius: 4px;
-      }
-      .skeleton-btn {
-          height: 28px;
-          width: 75px;
-          background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
-          background-size: 200% 100%;
-          animation: loading 1.2s infinite;
-          border-radius: 20px;
-      }
-      @keyframes loading {
-          0% { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-      }
-
       .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 1000; padding: 15px; }
       .modal-content { background: white; padding: 22px; border-radius: 12px; width: 100%; max-width: 450px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); max-height: 90vh; overflow-y: auto; }
       .modal-content h3 { margin-bottom: 16px; color: #075e54; font-size: 20px; text-align: center; }
@@ -225,15 +158,12 @@
       .admin-tabs { display: flex; gap: 8px; margin-bottom: 15px; }
       .tab-btn { padding: 8px 14px; background: #e2e8f0; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px; color: #4a5568; }
       .tab-btn.active { background: #075e54; color: white; }
-      .admin-list { display: flex; flex-direction: column; gap: 10px; }
+      .admin-list { display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; }
       .admin-item { background: #f7fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 8px; text-align: left; word-break: break-all; }
       .admin-btn-row { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
-      .btn-approve { background: #38a169; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: bold; }
       .btn-copy-admin { background: #3182ce; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: bold; }
       .btn-delete { background: #e53e3e; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: bold; }
       .admin-link-box { margin-top: 5px; font-size: 12px; color: #075e54; word-break: break-all; }
-      .admin-link-box a { color: #3182ce; text-decoration: underline; }
-      .clicks-badge { background: #edf2f7; color: #2d3748; padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; display: inline-block; margin-top: 5px; border: 1px solid #cbd5e0; }
 
       footer { background-color: #f8f9fa; padding: 30px 20px; text-align: center; border-top: 1px solid #e9ecef; margin-top: 40px; }
       footer p { color: #4a5568; font-size: 14px; line-height: 1.6; margin-bottom: 12px; }
@@ -241,47 +171,8 @@
       .footer-links a { color: #075e54; text-decoration: none; font-weight: 600; }
       .footer-links a:hover { text-decoration: underline; }
       .footer-links span { color: #cbd5e0; }
-
-      iframe[src*="bicea.org"], 
-      div[style*="z-index: 2147483647"], 
-      div[style*="z-index:2147483647"] {
-          position: fixed !important;
-          top: 0 !important;
-          left: 0 !important;
-          right: 0 !important;
-          width: 100% !important;
-          bottom: auto !important;
-          z-index: 2147483647 !important;
-      }
-            #loading-spinner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    text-align: center;
-    background: white;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #25d366; /* WhatsApp Green */
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 10px;
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-
   </style>
-</he>
+</head>
 <body>
 
     <!-- TOP NAVBAR -->
@@ -294,24 +185,21 @@
         <h1>1000+ Active WhatsApp Groups Links - Join Active WhatsApp Group Links 2026</h1>
     </div>
 
-
     <!-- WELCOME SECTION WITH AD & BUTTONS -->
     <div style="max-width: 700px; margin: 15px auto 0; padding: 0 12px;">
         <div style="background: white; border-radius: 10px; padding: 15px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center;">
             
-            <div class="ad-box-container" style="margin-bottom: 15px;">
-                <div style="text-align: center; width: 100%;">
-                    <script>
-                        atOptions = {
-                            'key' : 'e5f1ad5ae6cce357502d1a4b4f678442',
-                            'format' : 'iframe',
-                            'height' : 250,
-                            'width' : 300,
-                            'params' : {}
-                        };
-                    </script>
-                    <script src="https://bicea.org/22/e5f1ad5ae6cce357502d1a4b4f678442"></script>
-                </div>
+            <div style="margin-bottom: 15px; min-height: 250px; display: flex; justify-content: center; align-items: center;">
+                <script>
+                    atOptions = {
+                        'key' : 'e5f1ad5ae6cce357502d1a4b4f678442',
+                        'format' : 'iframe',
+                        'height' : 250,
+                        'width' : 300,
+                        'params' : {}
+                    };
+                </script>
+                <script src="https://bicea.org/22/e5f1ad5ae6cce357502d1a4b4f678442"></script>
             </div>
 
             <h2 style="font-size: 16px; color: #075e54; margin-bottom: 8px; font-weight: bold;">
@@ -329,14 +217,58 @@
         </div>
     </div>
 
-       <!-- MAIN CATEGORIES CONTAINER -->
+    <!-- MAIN CATEGORIES CONTAINER (Saare groups aik hi uniform layout mein) -->
     <div class="container" id="categoriesContainer">
-        <div id="loading-spinner">
-            <div class="spinner"></div>
-            <p style="color: #075e54; font-size: 14px; font-weight: 600;">Loading Active Groups...</p>
+        
+        <!-- Category 1: Online Earning -->
+        <div class="category-sec">
+            <div class="category-header">
+                <span class="category-title">Online Earning</span>
+            </div>
+            <div class="group-list">
+                <div class="group-row">
+                    <span class="group-name">Daily Online Earning 2026</span>
+                    <div class="group-actions">
+                        <a href="https://chat.whatsapp.com/YOUR_LINK_HERE" target="_blank" class="btn-click-join">Click Join</a>
+                        <button class="btn-report-mini" onclick="openReportModal('sample-id-1')">Report</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
+        <!-- Category 2: Islamic -->
+        <div class="category-sec">
+            <div class="category-header">
+                <span class="category-title">Islamic</span>
+            </div>
+            <div class="group-list">
+                <div class="group-row">
+                    <span class="group-name">Daily Quran & Hadith Updates</span>
+                    <div class="group-actions">
+                        <a href="https://chat.whatsapp.com/YOUR_LINK_HERE" target="_blank" class="btn-click-join">Click Join</a>
+                        <button class="btn-report-mini" onclick="openReportModal('sample-id-2')">Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category 3: Jobs -->
+        <div class="category-sec">
+            <div class="category-header">
+                <span class="category-title">Jobs</span>
+            </div>
+            <div class="group-list">
+                <div class="group-row">
+                    <span class="group-name">Latest Government Jobs Alerts</span>
+                    <div class="group-actions">
+                        <a href="https://chat.whatsapp.com/YOUR_LINK_HERE" target="_blank" class="btn-click-join">Click Join</a>
+                        <button class="btn-report-mini" onclick="openReportModal('sample-id-3')">Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <!-- SUBMIT GROUP MODAL -->
     <div id="submitModal" class="modal">
@@ -393,10 +325,9 @@
     <!-- ADMIN DASHBOARD MODAL -->
     <div id="adminDashboardModal" class="modal">
         <div class="modal-content admin-dashboard">
-            <h3>Manage Groups</h3>
+            <h3>Manage Submitted Groups & Reports</h3>
             <div class="admin-tabs">
                 <button class="tab-btn active" id="tab-pending" onclick="switchAdminTab('pending')">Pending Groups</button>
-                <button class="tab-btn" id="tab-approved" onclick="switchAdminTab('approved')">Approved Groups</button>
                 <button class="tab-btn" id="tab-reports" onclick="switchAdminTab('reports')">Reports</button>
             </div>
             <div class="admin-list" id="adminListContainer"></div>
@@ -404,522 +335,23 @@
         </div>
     </div>
 
-    <script>
-    const categories = ["Entertainment", "Islamic", "Videos", "Sports","Friendship","Poetry", "Movies", "Gaming", "Trading", "Tech & Mobile", "Online Earning", "Jobs"];
-    
-    const countries = [
-        "India", "Pakistan", "Nigeria", "Sri Lanka" , "Indonesia", "Brazil", 
-        "Bangladesh", "Afghanistan", "Egypt", "Saudi Arabia", "UAE (Dubai)", "Kenya", 
-        "Ghana", "South Africa", "Nepal", "Malaysia","Russia" , "Philippines", 
-        "Iraq", "Algeria", "Turkey", "New York" , "Morocco", "Qatar" , "United State" , "United Kingdom" , "Other Country"
-    ];
-
-    const blockedKeywords = ["xxx", "sexy", "hot", "girls", "18+", "adult", "sex", "nude", "porn"];
-    const positiveKeywords = ["islam", "deen", "quran", "hadith", "sunnah", "madani", "naat", "bayan", "islamic", "allah"];
-
-      const firebaseConfig = {
-      apiKey: "AIzaSyA3IddMLRa2hilO7aoCWFi1T4jzUHjAK48",
-      authDomain: "whatsapp-directory-fa7b9.firebaseapp.com",
-      databaseURL: "https://whatsapp-directory-fa7b9-default-rtdb.firebaseio.com",
-      projectId: "whatsapp-directory-fa7b9",
-      storageBucket: "whatsapp-directory-fa7b9.firebasestorage.app",
-      messagingSenderId: "215715225006",
-      appId: "1:215715225006:web:65dc7f7057e19f1105fc3f"
-    };
-    
-    if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
-    const db = firebase.database();
-    let allGroups = [];
-    let allReports = [];
-    let currentTab = 'pending';
-
-    function escapeHTML(str) {
-        if (!str) return '';
-        return str.replace(/[&<>'"]/g, 
-            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-        );
-    }
-
-    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-
-    function populateDropdowns() {
-        const catSelect = document.getElementById('subCategory');
-        const countrySelect = document.getElementById('subCountry');
-        
-        if (catSelect) {
-            catSelect.innerHTML = '<option value="" disabled selected>-- Select Category --</option>' + 
-                categories.map(c => `<option value="${c}">${c}</option>`).join('');
-        }
-        if (countrySelect) {
-            countrySelect.innerHTML = '<option value="" disabled selected>-- Select Country --</option>' + 
-                countries.map(cnt => `<option value="${cnt}">${cnt}</option>`).join('');
-        }
-    }
-
-        /* SHOW SKELETON LOADER & SPINNER */
-    function showSkeletonLoader() {
-        const container = document.getElementById('categoriesContainer');
-        if (!container) return;
-        
-        let skeletonHTML = `
-            <div id="loading-spinner">
-                <div class="spinner"></div>
-                <p style="color: #075e54; font-size: 14px; font-weight: 600;">Loading Active Groups...</p>
-            </div>
-        `;
-        
-        for (let i = 0; i < 2; i++) {
-            skeletonHTML += `
-                <div class="skeleton-sec">
-                    <div class="skeleton-header-line"></div>
-                    <div class="skeleton-row">
-                        <div class="skeleton-line"></div>
-                        <div class="skeleton-btn"></div>
-                    </div>
-                    <div class="skeleton-row">
-                        <div class="skeleton-line"></div>
-                        <div class="skeleton-btn"></div>
-                    </div>
-                </div>
-            `;
-        }
-        container.innerHTML = skeletonHTML;
-    }
-
-
-    /* 4-TAP TRIGGER FUNCTION FOR FOOTER HEADING */
-    let tapCount = 0, tapTimer = null;
-    function handleAdminTap() {
-        tapCount++;
-        clearTimeout(tapTimer);
-        tapTimer = setTimeout(() => { tapCount = 0; }, 2000);
-        if (tapCount === 4) {
-            tapCount = 0;
-            openModal('adminLoginModal');
-        }
-    }
-
-    function checkAdminLogin() {
-        const pass = document.getElementById('adminPass').value;
-        if (pass === "ali50") {
-            closeModal('adminLoginModal');
-            openModal('adminDashboardModal');
-            loadAdminTabContent();
-        } else {
-            alert('Wrong Password!');
-        }
-    }
-
-    function copyGroupLink(link) {
-        if(!link) { alert('No link available'); return; }
-        navigator.clipboard.writeText(link).then(() => {
-            alert('Link Copied Successfully!');
-        }).catch(err => {
-            alert('Failed to copy link');
-        });
-    }
-
-    function changeGroupCategory(groupId) {
-        const selectElem = document.getElementById('change-cat-' + groupId);
-        if (!selectElem) return;
-        const newCategory = selectElem.value;
-        
-        db.ref('groups/' + groupId).update({
-            category: newCategory
-        }).then(() => {
-            alert('✅ Category updated successfully!');
-        }).catch((err) => {
-            alert('Error updating category: ' + err.message);
-        });
-    }
-
-    function deleteGroupAndReports(groupId) {
-        if (!confirm('Are you sure you want to delete this group?')) return;
-
-        db.ref('groups/' + groupId).remove().then(() => {
-            allReports.forEach(r => {
-                if (r.groupId === groupId) {
-                    db.ref('reports/' + r.id).remove();
-                }
-            });
-            alert('🗑️ Group deleted successfully!');
-        }).catch((err) => {
-            alert('Error deleting group: ' + err.message);
-        });
-    }
-
-    function fetchGroupsFromFirebase() {
-        const cachedData = localStorage.getItem('fast_cached_groups');
-        if (cachedData) {
-            try {
-                let parsed = JSON.parse(cachedData);
-                allGroups = parsed.filter(g => g.link && g.link.trim() !== '' && g.link !== 'No link');
-                allGroups.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
-                renderMainCategories();
-            } catch(e){}
-        } else {
-            showSkeletonLoader();
-        }
-
-        db.ref('groups').on('value', (snapshot) => {
-            allGroups = [];
-            snapshot.forEach((child) => {
-                let g = child.val();
-                g.id = child.key;
-                if (g.link && g.link.trim() !== '' && g.link !== 'No link') {
-                    allGroups.push(g);
-                }
-            });
-            
-            allGroups.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
-
-            localStorage.setItem('fast_cached_groups', JSON.stringify(allGroups));
-            renderMainCategories();
-            if (document.getElementById('adminDashboardModal').style.display === 'flex') {
-                loadAdminTabContent();
-            }
-        }, (error) => {
-            console.error("Firebase Read Error: ", error);
-            const container = document.getElementById('categoriesContainer');
-            if (container && allGroups.length === 0) {
-                container.innerHTML = '<div style="text-align:center; padding:20px; background:white; border-radius:10px;">Database Connection Error! Check Firebase Rules.</div>';
-            }
-        });
-
-        db.ref('reports').on('value', (snapshot) => {
-            allReports = [];
-            snapshot.forEach((child) => {
-                let r = child.val();
-                r.id = child.key;
-                allReports.push(r);
-            });
-            if (document.getElementById('adminDashboardModal').style.display === 'flex') {
-                loadAdminTabContent();
-            }
-        });
-    }
-
-    function renderMainCategories() {
-        const container = document.getElementById('categoriesContainer');
-        if (!container) return;
-
-        let approvedGroups = allGroups.filter(g => !g.status || g.status === 'approved');
-
-        if (approvedGroups.length === 0) {
-            container.innerHTML = '<div style="text-align:center; padding: 20px; background:white; border-radius:10px; color: #718096;">No approved groups available right now.</div>';
-            return;
-        }
-
-        container.innerHTML = '';
-
-        let sortedCategories = [...categories].sort((a, b) => {
-            let countA = approvedGroups.filter(g => g.category === a).length;
-            let countB = approvedGroups.filter(g => g.category === b).length;
-            return countB - countA;
-        });
-
-        sortedCategories.forEach((cat) => {
-            let catGroups = approvedGroups
-                .filter(g => g.category === cat)
-                .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
-
-            if (catGroups.length === 0) return;
-
-            const sec = document.createElement('div');
-            sec.className = 'category-sec';
-
-            let html = `
-                <div class="category-header">
-                    <span class="category-title">${cat} (${catGroups.length})</span>
-                </div>
-                <div class="group-list" id="cat-list-${cat.replace(/\s+/g, '-')}">
-            `;
-
-            let initialLimit = 8;
-            let visibleGroups = catGroups.slice(0, initialLimit);
-
-            visibleGroups.forEach(g => {
-                html += `
-                    <div class="group-row">
-                        <span class="group-name">${escapeHTML(g.name)}</span>
-                        <div class="group-actions">
-                            <a href="detail.html?id=${g.id}" class="btn-click-join">Click Join</a>
-                            <button class="btn-report-mini" onclick="openReportModal('${g.id}')">Report</button>
-                        </div>
-                    </div>
-                `;
-            });
-
-            html += `</div>`;
-
-            if (catGroups.length > initialLimit) {
-                html += `
-                    <div style="text-align: center; margin-top: 10px;">
-                        <button id="btn-more-${cat.replace(/\s+/g, '-')}" class="btn-banner" style="padding: 6px 15px; font-size: 13px;" onclick="toggleShowMore('${cat}')">Show More ⬇</button>
-                    </div>
-                `;
-            }
-
-            sec.innerHTML = html;
-            container.appendChild(sec);
-        });
-    }
-
-    function toggleShowMore(categoryName) {
-        let approvedGroups = allGroups
-            .filter(g => (!g.status || g.status === 'approved') && g.category === categoryName)
-            .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
-
-        let listContainer = document.getElementById(`cat-list-${categoryName.replace(/\s+/g, '-')}`);
-        let btn = document.getElementById(`btn-more-${categoryName.replace(/\s+/g, '-')}`);
-
-        if (btn.innerText.includes('Show More')) {
-            let html = '';
-            approvedGroups.forEach(g => {
-                html += `
-                    <div class="group-row">
-                        <span class="group-name">${escapeHTML(g.name)}</span>
-                        <div class="group-actions">
-                            <a href="detail.html?id=${g.id}" class="btn-click-join">Click Join</a>
-                            <button class="btn-report-mini" onclick="openReportModal('${g.id}')">Report</button>
-                        </div>
-                    </div>
-                `;
-            });
-            listContainer.innerHTML = html;
-            btn.innerText = 'Show Less ⬆';
-        } else {
-            let html = '';
-            approvedGroups.slice(0, 8).forEach(g => {
-                html += `
-                    <div class="group-row">
-                        <span class="group-name">${escapeHTML(g.name)}</span>
-                        <div class="group-actions">
-                            <a href="detail.html?id=${g.id}" class="btn-click-join">Click Join</a>
-                            <button class="btn-report-mini" onclick="openReportModal('${g.id}')">Report</button>
-                        </div>
-                    </div>
-                `;
-            });
-            listContainer.innerHTML = html;
-            btn.innerText = 'Show More ⬇';
-        }
-    }
-function submitGroup() {
-      const name = document.getElementById('subName').value.trim();
-      const category = document.getElementById('subCategory').value;
-      const country = document.getElementById('subCountry').value;
-      const link = document.getElementById('subLink').value.trim();
-
-      if (!name || !link || !category || !country) {
-        alert('Please fill in all fields!');
-        return;
-      }
-
-      if (!link.includes("chat.whatsapp.com")) {
-        alert('⚠️ Please enter a valid WhatsApp Group Link!');
-        return;
-      }
-
-      const lowerName = name.toLowerCase();
-      const containsBlocked = blockedKeywords.some(word => lowerName.includes(word));
-      if (containsBlocked) {
-        alert('⚠️ Submission Failed! Inappropriate group names are not allowed.');
-        return;
-      }
-
-      const isDuplicate = allGroups.some(g => g.link && g.link.trim().toLowerCase() === link.toLowerCase());
-      if (isDuplicate) {
-        alert('⚠️ This WhatsApp group link has already been submitted!');
-        return;
-      }
-
-      const isPositive = positiveKeywords.some(word => lowerName.includes(word));
-
-      db.ref('groups').push({
-        name: name,
-        category: category,
-        country: country,
-        link: link,
-        clicks: 0,
-        status: 'pending',
-        timestamp: Date.now()
-      }).then((ref) => {
-        const newGroupId = ref.key;
-        if (isPositive) {
-          alert('✅ Verified Positive/Islamic Group! Your group will be auto approved shortly.');
-          setTimeout(() => {
-            db.ref('groups/' + newGroupId).update({ status: 'approved' });
-          }, 5 * 60 * 1000);
-        } else {
-          alert('Group Submitted for Admin Review!');
-        }
-        closeModal('submitModal');
-        document.getElementById('subName').value = '';
-        document.getElementById('subLink').value = '';
-        document.getElementById('subCategory').selectedIndex = 0;
-        document.getElementById('subCountry').selectedIndex = 0;
-      }).catch(err => {
-        alert('Submission Failed: ' + err.message);
-      });
-    }
-
-    function openReportModal(id) { 
-        document.getElementById('reportGroupId').value = id; 
-        document.getElementById('reportReason').value = ''; 
-        openModal('reportModal'); 
-    }
-    
-    function sendReport() {
-        const id = document.getElementById('reportGroupId').value;
-        const reason = document.getElementById('reportReason').value.trim();
-        
-        if (!reason || !id) { 
-            alert('Please enter details!'); 
-            return; 
-        }
-
-        db.ref('reports').push({
-            groupId: id,
-            reason: reason,
-            timestamp: Date.now()
-        }).then(() => {
-            alert('✅ Report submitted successfully!');
-            document.getElementById('reportReason').value = '';
-            closeModal('reportModal');
-        }).catch((err) => {
-            alert('Report Error: ' + err.message);
-        });
-    }
-
-    function switchAdminTab(tabName) {
-        currentTab = tabName;
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById('tab-' + tabName).classList.add('active');
-        loadAdminTabContent();
-    }
-
-    function loadAdminTabContent() {
-        const container = document.getElementById('adminListContainer');
-        container.innerHTML = '';
-
-        if (currentTab === 'pending') {
-            const list = allGroups.filter(g => g.status === 'pending');
-            if (list.length === 0) { 
-                container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No pending groups.</div>'; 
-                return; 
-            }
-            list.forEach(g => {
-                container.innerHTML += `
-                    <div class="admin-item">
-                        <b>${escapeHTML(g.name)} (${escapeHTML(g.country)})</b>
-                        <div class="admin-link-box">Category: ${escapeHTML(g.category)}</div>
-                        <div class="admin-link-box">Link: <a href="${escapeHTML(g.link)}" target="_blank">${escapeHTML(g.link)}</a></div>
-                        <div class="admin-btn-row">
-                            <button class="btn-approve" onclick="db.ref('groups/${g.id}').update({status:'approved'})">Approve</button>
-                            <button class="btn-copy-admin" onclick="copyGroupLink('${escapeHTML(g.link)}')">📋 Copy Link</button>
-                            <button class="btn-delete" onclick="deleteGroupAndReports('${g.id}')">Delete</button>
-                        </div>
-                    </div>
-                `;
-            });
-          } else if (currentTab === 'approved') {
-            const list = allGroups.filter(g => g.status === 'approved' || !g.status);
-            if (list.length === 0) { 
-                container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No approved groups.</div>'; 
-                return; 
-            }
-            list.forEach(g => {
-                const clickCount = g.clicks || 0;
-
-                const categoryOptionsHtml = categories.map(c => 
-                    `<option value="${c}" ${c === g.category ? 'selected' : ''}>${c}</option>`
-                ).join('');
-
-                container.innerHTML += `
-                    <div class="admin-item">
-                        <b>${escapeHTML(g.name)} (${escapeHTML(g.country || 'Global')})</b>
-                        <div style="display: flex; gap: 10px; margin: 5px 0;">
-                            <span class="clicks-badge">👁️ Total Clicks: ${clickCount}</span>
-                        </div>
-                        <div class="admin-link-box">Current Category: <b>${escapeHTML(g.category || 'General')}</b></div>
-                        
-                        <div style="margin: 8px 0;">
-                            <label style="font-size:11px; font-weight:bold; color:#4a5568;">Change Category:</label>
-                            <select id="change-cat-${g.id}" style="width:100%; padding:5px; font-size:12px; border-radius:4px; border:1px solid #cbd5e0; margin-top:3px;">
-                                ${categoryOptionsHtml}
-                            </select>
-                        </div>
-
-                        <div class="admin-link-box">Link: <a href="${escapeHTML(g.link)}" target="_blank">${escapeHTML(g.link || 'No link')}</a></div>
-                        <div class="admin-btn-row">
-                            <button class="btn-approve" style="background-color:#3182ce;" onclick="changeGroupCategory('${g.id}')">Update Cat</button>
-                            <button class="btn-copy-admin" onclick="copyGroupLink('${escapeHTML(g.link)}')">📋 Copy Link</button>
-                            <button class="btn-delete" onclick="deleteGroupAndReports('${g.id}')">Delete</button>
-                        </div>
-                    </div>
-                `;
-            });
-        } else if (currentTab === 'reports') {
-            if (allReports.length === 0) { 
-                container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No reports found.</div>'; 
-                return; 
-            }
-            allReports.forEach(r => {
-                const group = allGroups.find(g => g.id === r.groupId);
-                const groupName = group ? group.name : 'Unknown Group';
-                const groupLink = group ? group.link : '';
-                
-                const totalGroupReports = allReports.filter(rep => rep.groupId === r.groupId).length;
-
-                container.innerHTML += `
-                    <div class="admin-item">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <b>Group: ${escapeHTML(groupName)}</b>
-                            <span class="clicks-badge" style="background: #ffebee; color: #c62828;">⚠️ Total Reports: ${totalGroupReports}</span>
-                        </div>
-                        <div><small><strong>Reason:</strong> ${escapeHTML(r.reason)}</small></div>
-                        ${groupLink ? `<div class="admin-link-box">Link: <a href="${escapeHTML(groupLink)}" target="_blank">${escapeHTML(groupLink)}</a></div>` : ''}
-                        <div class="admin-btn-row">
-                            <button class="btn-delete" onclick="db.ref('reports/${r.id}').remove()">Dismiss Report</button>
-                            ${groupLink ? `<button class="btn-copy-admin" onclick="copyGroupLink('${escapeHTML(groupLink)}')">📋 Copy Link</button>` : ''}
-                            ${group ? `<button class="btn-delete" style="background: #c62828;" onclick="deleteGroupAndReports('${r.groupId}')">Delete Group</button>` : ''}
-                        </div>
-                    </div>
-                `;
-            });
-        }
-    }
-
-    window.onload = function() {
-        populateDropdowns();
-        fetchGroupsFromFirebase();
-    };
-    </script>
-
     <!-- FOOTER SECTION -->
     <footer data-nosnippet>
-        <div style="max-width: 800px; margin: 0 auto;">
+        <div class="footer-content" style="max-width: 800px; margin: 0 auto;">
             
-            <div class="ad-box-container" style="margin-bottom: 25px;">
-                <div style="text-align: center; width: 100%;">
-                    <script>
-                        atOptions = {
-                            'key' : 'e5f1ad5ae6cce357502d1a4b4f678442',
-                            'format' : 'iframe',
-                            'height' : 250,
-                            'width' : 300,
-                            'params' : {}
-                        };
-                    </script>
-                    <script src="https://bicea.org/22/e5f1ad5ae6cce357502d1a4b4f678442"></script>
-                </div>
+            <div style="margin-bottom: 25px; min-height: 250px; display: flex; justify-content: center; align-items: center;">
+                <script>
+                    atOptions = {
+                        'key' : 'e5f1ad5ae6cce357502d1a4b4f678442',
+                        'format' : 'iframe',
+                        'height' : 250,
+                        'width' : 300,
+                        'params' : {}
+                    };
+                </script>
+                <script src="https://bicea.org/22/e5f1ad5ae6cce357502d1a4b4f678442"></script>
             </div>
 
-                <!-- Footer container with data-nosnippet to prevent Google from using footer text as snippet -->
-    <footer data-nosnippet>
-        <div class="footer-content">
             <!-- ABOUT HEADING WITH 4-TAP TRIGGER -->
             <h3 id="footerAboutTitle" onclick="handleAdminTap()" style="color: #075e54; margin-bottom: 15px; font-size: 20px; cursor: pointer; user-select: none;">About Group Join Link</h3>
             <p>
@@ -939,6 +371,238 @@ function submitGroup() {
             </p>
         </div>
     </footer>
+
+    <script>
+        const categories = ["Entertainment", "Islamic", "Videos", "Sports", "Friendship", "Poetry", "Movies", "Gaming", "Trading", "Tech & Mobile", "Online Earning", "Jobs"];
+        
+        const countries = [
+            "India", "Pakistan", "Nigeria", "Sri Lanka", "Indonesia", "Brazil", 
+            "Bangladesh", "Afghanistan", "Egypt", "Saudi Arabia", "UAE (Dubai)", "Kenya", 
+            "Ghana", "South Africa", "Nepal", "Malaysia", "Russia", "Philippines", 
+            "Iraq", "Algeria", "Turkey", "New York", "Morocco", "Qatar", "United State", "United Kingdom", "Other Country"
+        ];
+
+        const blockedKeywords = ["xxx", "sexy", "hot", "girls", "18+", "adult", "sex", "nude", "porn"];
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA3IddMLRa2hilO7aoCWFi1T4jzUHjAK48",
+            authDomain: "whatsapp-directory-fa7b9.firebaseapp.com",
+             databaseURL: "https://whatsapp-directory-fa7b9-default-rtdb.firebaseio.com",
+            projectId: "whatsapp-directory-fa7b9",
+            storageBucket: "whatsapp-directory-fa7b9.firebasestorage.app",
+            messagingSenderId: "215715225006",
+            appId: "1:215715225006:web:65dc7f7057e19f1105fc3f"
+        };
+        
+        if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+        const db = firebase.database();
+        let allPendingGroups = [];
+        let allReports = [];
+        let currentTab = 'pending';
+
+        function escapeHTML(str) {
+            if (!str) return '';
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        function populateDropdowns() {
+            const catSelect = document.getElementById('subCategory');
+            const countrySelect = document.getElementById('subCountry');
+            
+            if (catSelect) {
+                catSelect.innerHTML = '<option value="" disabled selected>-- Select Category --</option>' + 
+                    categories.map(c => `<option value="${c}">${c}</option>`).join('');
+            }
+            if (countrySelect) {
+                countrySelect.innerHTML = '<option value="" disabled selected>-- Select Country --</option>' + 
+                    countries.map(cnt => `<option value="${cnt}">${cnt}</option>`).join('');
+            }
+        }
+        populateDropdowns();
+
+        // 4-TAP TRIGGER FUNCTION ON FOOTER TITLE FOR ADMIN LOGIN
+        let tapCount = 0, tapTimer = null;
+        function handleAdminTap() {
+            tapCount++;
+            clearTimeout(tapTimer);
+            tapTimer = setTimeout(() => { tapCount = 0; }, 2000);
+            if (tapCount === 4) {
+                tapCount = 0;
+                openModal('adminLoginModal');
+            }
+        }
+
+        function checkAdminLogin() {
+            const pass = document.getElementById('adminPass').value;
+            if (pass === "ali50") {
+                closeModal('adminLoginModal');
+                openModal('adminDashboardModal');
+                loadAdminData();
+            } else {
+                alert('Wrong Password!');
+            }
+        }
+
+        // SUBMIT GROUP TO FIREBASE (PENDING)
+        function submitGroup() {
+            const name = document.getElementById('subName').value.trim();
+            const category = document.getElementById('subCategory').value;
+            const country = document.getElementById('subCountry').value;
+            const link = document.getElementById('subLink').value.trim();
+
+            if (!name || !link || !category || !country) {
+                alert('Please fill in all fields!');
+                return;
+            }
+
+            if (!link.includes("chat.whatsapp.com")) {
+                alert('⚠️ Please enter a valid WhatsApp Group Link!');
+                return;
+            }
+
+            const lowerName = name.toLowerCase();
+            const containsBlocked = blockedKeywords.some(word => lowerName.includes(word));
+            if (containsBlocked) {
+                alert('⚠️ Submission Failed! Inappropriate group names are not allowed.');
+                return;
+            }
+
+            db.ref('groups').push({
+                name: name,
+                category: category,
+                country: country,
+                link: link,
+                status: 'pending',
+                timestamp: Date.now()
+            }).then(() => {
+                alert('✅ Group Submitted Successfully! Admin will review and add it.');
+                closeModal('submitModal');
+                document.getElementById('subName').value = '';
+                document.getElementById('subLink').value = '';
+                document.getElementById('subCategory').selectedIndex = 0;
+                document.getElementById('subCountry').selectedIndex = 0;
+            }).catch(err => {
+                alert('Submission Failed: ' + err.message);
+            });
+        }
+
+        function openReportModal(id) { 
+            document.getElementById('reportGroupId').value = id; 
+            document.getElementById('reportReason').value = ''; 
+            openModal('reportModal'); 
+        }
+        
+        function sendReport() {
+            const id = document.getElementById('reportGroupId').value;
+            const reason = document.getElementById('reportReason').value.trim();
+            
+            if (!reason) { alert('Please enter details!'); return; }
+
+            db.ref('reports').push({
+                groupId: id,
+                reason: reason,
+                timestamp: Date.now()
+            }).then(() => {
+                alert('✅ Report submitted successfully!');
+                document.getElementById('reportReason').value = '';
+                closeModal('reportModal');
+            }).catch((err) => {
+                alert('Report Error: ' + err.message);
+            });
+        }
+function switchAdminTab(tabName) {
+            currentTab = tabName;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+            loadAdminTabContent();
+        }
+
+        // LOAD ADMIN DATA FROM FIREBASE
+        function loadAdminData() {
+            db.ref('groups').on('value', (snapshot) => {
+                allPendingGroups = [];
+                snapshot.forEach((child) => {
+                    let g = child.val();
+                    g.id = child.key;
+                    if (!g.status || g.status === 'pending') {
+                        allPendingGroups.push(g);
+                    }
+                });
+                if (document.getElementById('adminDashboardModal').style.display === 'flex') {
+                    loadAdminTabContent();
+                }
+            });
+
+            db.ref('reports').on('value', (snapshot) => {
+                allReports = [];
+                snapshot.forEach((child) => {
+                    let r = child.val();
+                    r.id = child.key;
+                    allReports.push(r);
+                });
+                if (document.getElementById('adminDashboardModal').style.display === 'flex') {
+                    loadAdminTabContent();
+                }
+            });
+        }
+
+        function loadAdminTabContent() {
+            const container = document.getElementById('adminListContainer');
+            container.innerHTML = '';
+
+            if (currentTab === 'pending') {
+                if (allPendingGroups.length === 0) { 
+                    container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No pending groups.</div>'; 
+                    return; 
+                }
+                allPendingGroups.forEach(g => {
+                    const item = document.createElement('div');
+                    item.className = 'admin-item';
+                    item.innerHTML = `
+                        <b>${escapeHTML(g.name)} (${escapeHTML(g.country)})</b>
+                        <div class="admin-link-box">Category: ${escapeHTML(g.category)}</div>
+                        <div class="admin-link-box">Link: <a href="${escapeHTML(g.link)}" target="_blank">${escapeHTML(g.link)}</a></div>
+                        <div class="admin-btn-row">
+                            <button class="btn-copy-admin" onclick="navigator.clipboard.writeText('${escapeHTML(g.link)}'); alert('Link Copied!');">📋 Copy Link</button>
+                            <button class="btn-delete" onclick="deleteItem('groups', '${g.id}')">Delete</button>
+                        </div>
+                    `;
+                    container.appendChild(item);
+                });
+            } else if (currentTab === 'reports') {
+                if (allReports.length === 0) { 
+                    container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No reports found.</div>'; 
+                    return; 
+                }
+                allReports.forEach(r => {
+                    const item = document.createElement('div');
+                    item.className = 'admin-item';
+                    item.innerHTML = `
+                        <div style="color: #e53e3e; font-weight: bold;">Reason: ${escapeHTML(r.reason)}</div>
+                        <div style="font-size: 12px; color: #718096; margin-top: 4px;">Group ID: ${escapeHTML(r.groupId)}</div>
+                        <div class="admin-btn-row">
+                            <button class="btn-delete" onclick="deleteItem('reports', '${r.id}')">Dismiss / Delete Report</button>
+                        </div>
+                    `;
+                    container.appendChild(item);
+                });
+            }
+        }
+
+        function deleteItem(path, id) {
+            if (!confirm('Are you sure?')) return;
+            db.ref(path + '/' + id).remove().then(() => {
+                alert('Deleted successfully!');
+            }).catch(err => {
+                alert('Error: ' + err.message);
+            });
+        }
+    </script>
 
 </body>
 </html>
