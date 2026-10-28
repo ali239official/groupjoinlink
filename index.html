@@ -65,7 +65,13 @@
 
   <style>
       * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-      body { background-color: #f0f2f5; color: #1c1e21; padding-bottom: 30px; }
+      
+      /* SINGLE UNIFORM BACKGROUND COLOR */
+      body { 
+          background-color: #ffffff; 
+          color: #1c1e21; 
+          padding-bottom: 30px; 
+      }
 
       .main-navbar {
           background-color: #25d366;
@@ -126,7 +132,7 @@
 
       .container { max-width: 700px; margin: 20px auto 0; padding: 0 12px; }
       
-      .category-sec { background: white; border-radius: 10px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+      .category-sec { background: #ffffff; border-radius: 10px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
       .category-header { border-bottom: 2px solid #25d366; padding-bottom: 8px; margin-bottom: 12px; }
       .category-title { font-size: 17px; color: #075e54; font-weight: bold; }
 
@@ -165,7 +171,7 @@
       .btn-delete { background: #e53e3e; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: bold; }
       .admin-link-box { margin-top: 5px; font-size: 12px; color: #075e54; word-break: break-all; }
 
-      footer { background-color: #f8f9fa; padding: 30px 20px; text-align: center; border-top: 1px solid #e9ecef; margin-top: 40px; }
+      footer { background-color: #ffffff; padding: 30px 20px; text-align: center; border-top: 1px solid #e9ecef; margin-top: 40px; }
       footer p { color: #4a5568; font-size: 14px; line-height: 1.6; margin-bottom: 12px; }
       .footer-links { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 14px; margin-top: 15px; }
       .footer-links a { color: #075e54; text-decoration: none; font-weight: 600; }
@@ -187,7 +193,7 @@
 
     <!-- WELCOME SECTION WITH AD & BUTTONS -->
     <div style="max-width: 700px; margin: 15px auto 0; padding: 0 12px;">
-        <div style="background: white; border-radius: 10px; padding: 15px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center;">
+        <div style="background: #ffffff; border-radius: 10px; padding: 15px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; text-align: center;">
             
             <div style="margin-bottom: 15px; min-height: 250px; display: flex; justify-content: center; align-items: center;">
                 <script>
@@ -320,7 +326,6 @@
                         <button class="btn-report-mini" onclick="openReportModal('poetry-1')">Report</button>
                     </div>
                 </div>
-              
             </div>
         </div>
 
@@ -359,7 +364,7 @@
                         <a href="detail.html?id=gaming-2" class="btn-click-join">Click Join</a>
                         <button class="btn-report-mini" onclick="openReportModal('gaming-2')">Report</button>
                     </div>
-   </div>
+                </div>
             </div>
         </div>
 
@@ -532,12 +537,10 @@
     </footer>
 
     <script>
-        // CACHE GROUPS DATA FOR DETAIL PAGE & SORT CATEGORIES ON LOAD
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById('categoriesContainer');
             if (!container) return;
 
-            // Cache static groups so detail.html can read them instantly
             const groupRows = container.querySelectorAll('.group-row');
             const groupsArray = [];
             groupRows.forEach(row => {
@@ -551,12 +554,11 @@
             });
             localStorage.setItem('fast_cached_groups', JSON.stringify(groupsArray));
 
-            // Automatic Category Sorting based on group count
             const sections = Array.from(container.querySelectorAll('.category-sec'));
             sections.sort((a, b) => {
                 const countA = a.querySelectorAll('.group-row').length;
                 const countB = b.querySelectorAll('.group-row').length;
-                return countB - countA; // Descending order (Highest group count on top)
+                return countB - countA;
             });
 
             sections.forEach(section => {
@@ -616,7 +618,6 @@
         }
         populateDropdowns();
 
-        // 4-TAP TRIGGER FUNCTION ON FOOTER TITLE FOR ADMIN LOGIN
         let tapCount = 0, tapTimer = null;
         function handleAdminTap() {
             tapCount++;
@@ -639,7 +640,6 @@
             }
         }
 
-        // SUBMIT GROUP TO FIREBASE (PENDING)
         function submitGroup() {
             const name = document.getElementById('subName').value.trim();
             const category = document.getElementById('subCategory').value;
@@ -714,7 +714,6 @@
             loadAdminTabContent();
         }
 
-        // LOAD ADMIN DATA FROM FIREBASE
         function loadAdminData() {
             db.ref('groups').on('value', (snapshot) => {
                 allPendingGroups = [];
@@ -785,23 +784,6 @@
                     `;
                     container.appendChild(item);
                 });
-            } else if (currentTab === 'reports') {
-                if (allReports.length === 0) { 
-                    container.innerHTML = '<div style="text-align:center; padding: 20px; color: #718096;">No reports found.</div>'; 
-                    return; 
-                }
-                allReports.forEach(r => {
-                    const item = document.createElement('div');
-                    item.className = 'admin-item';
-                    item.innerHTML = `
-                        <div style="color: #e53e3e; font-weight: bold;">Reason: ${escapeHTML(r.reason)}</div>
-                        <div style="font-size: 12px; color: #718096; margin-top: 4px;">Group ID: ${escapeHTML(r.groupId)}</div>
-                        <div class="admin-btn-row">
-                            <button class="btn-delete" onclick="deleteItem('reports', '${r.id}')">Dismiss / Delete Report</button>
-                        </div>
-                    `;
-                    container.appendChild(item);
-                });
             }
         }
 
@@ -817,4 +799,3 @@
 
 </body>
 </html>
-        
