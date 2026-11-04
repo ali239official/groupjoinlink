@@ -263,6 +263,13 @@
                 <span class="category-title">Islamic WhatsApp Groups</span>
             </div>
             <div class="group-list">
+              <div class="group-row" data-id="is-4" data-name="کامیاب انسان" data-category="Islamic" data-link="https://chat.whatsapp.com/IEMrdIIfAkd3HG3Ms4gtdu?s=cl&p=a&iam=2" data-country="Pakistan">
+                    <span class="group-name">کامیاب انسان</span>
+                    <div class="group-actions">
+                        <a href="detail.html?id=is-4" class="btn-click-join">Click Join</a>
+                        <button class="btn-report-mini" onclick="openReportModal('j-1')">Report</button>
+                    </div>
+              </div>
               <div class="group-row" data-id="islamic-3" data-name="Forever Islam" data-category="Islamic" data-link="https://chat.whatsapp.com/GNVSBJzlfpk5aFS1BoqP8Q" data-country="Pakistan">
                     <span class="group-name">Forever Islam</span>
                     <div class="group-actions">
@@ -348,7 +355,7 @@
             </div>
         </div>
 
-        <!-- 5. Friendship -->
+         <!-- 5. Friendship -->
         <div class="category-sec" data-category="Friendship">
             <div class="category-header">
                 <span class="category-title">Friendship Whats Groups</span>
@@ -667,7 +674,6 @@
                 </script>
                 <script src="https://bicea.org/22/e5f1ad5ae6cce357502d1a4b4f678442"></script>
             </div>
-
             <!-- ABOUT HEADING WITH 4-TAP TRIGGER -->
             <h3 id="footerAboutTitle" onclick="handleAdminTap()" style="color: #075e54; margin-bottom: 15px; font-size: 20px; cursor: pointer; user-select: none;">About Group Join Link</h3>
             <p>
@@ -809,6 +815,13 @@
                 return;
             }
 
+            // Check if user already submitted this link using localStorage
+            const submittedLinks = JSON.parse(localStorage.getItem('user_submitted_links') || '[]');
+            if (submittedLinks.includes(link)) {
+                alert('⚠️ You have already submitted this link! Duplicate submissions are not allowed.');
+                return;
+            }
+
             const lowerName = name.toLowerCase();
             const containsBlocked = blockedKeywords.some(word => lowerName.includes(word));
             if (containsBlocked) {
@@ -824,6 +837,10 @@
                 status: 'pending',
                 timestamp: Date.now()
             }).then(() => {
+                // Save link to local storage so user cannot submit it again
+                submittedLinks.push(link);
+                localStorage.setItem('user_submitted_links', JSON.stringify(submittedLinks));
+
                 alert('✅ Group Submitted Successfully! Admin will review and add it.');
                 closeModal('submitModal');
                 document.getElementById('subName').value = '';
@@ -835,7 +852,7 @@
             });
         }
 
-        function openReportModal(id) { 
+ function openReportModal(id) { 
             document.getElementById('reportGroupId').value = id; 
             document.getElementById('reportReason').value = ''; 
             openModal('reportModal'); 
