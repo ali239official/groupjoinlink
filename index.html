@@ -199,6 +199,11 @@
         <h1>Join Active Whatsapp Group Links 2026</h1>
     </div>
 
+    <!-- LIVE SEARCH BAR SECTION -->
+    <div style="max-width: 700px; margin: 15px auto 0; padding: 0 12px;">
+        <input type="text" id="searchInput" placeholder="🔍 Search WhatsApp groups..." onkeyup="searchGroups()" style="width: 100%; padding: 12px 15px; border: 1px solid #cbd5e0; border-radius: 8px; font-size: 14px; outline: none; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+    </div>
+
     <!-- WELCOME SECTION WITH AD & BUTTONS -->
     <div style="max-width: 700px; margin: 15px auto 0; padding: 0 12px;">
         <div style="background: #ffffff; border-radius: 10px; padding: 15px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; text-align: center;">
@@ -342,7 +347,7 @@
                     <span class="group-name">Live Update</span>
                     <div class="group-actions">
                         <a href="detail.html?id=sports-2" class="btn-click-join">Click Join</a>
-                        <button class="btn-report-mini" onclick="openReportModal('j-1')">Report</button>
+                          <button class="btn-report-mini" onclick="openReportModal('sports-2')">Report</button>
                     </div>
               </div>
                 <div class="group-row" data-id="sports-1" data-name="PCB Cricket Board & Live" data-category="Sports" data-link="https://chat.whatsapp.com/FW6C6bzy9Vn7eiZuk9rIGu?s=cl&p=a&mlu=4&ilr=4&iam=2" data-country="Pakistan">
@@ -538,7 +543,7 @@
         </div>
 
         <!-- 11. Online Earning -->
-        <div class="category-sec" data-category="Online Earning Whats Groups">
+        <div class="category-sec" data-category="Online Earning">
             <div class="category-header">
                 <span class="category-title">Online Earning Whats Groups</span>
             </div>
@@ -568,7 +573,7 @@
         </div>
 
         <!-- 12. Jobs -->
-        <div class="category-sec" data-category="Jobs Whatsapp Groups">
+        <div class="category-sec" data-category="Jobs">
             <div class="category-header">
                 <span class="category-title">Jobs Whatsapp Groups</span>
             </div>
@@ -592,52 +597,32 @@
 
     </div> <!-- END OF CONTAINER -->
 
+    <!-- CATEGORY KEYWORDS QUICK-FILTER BAR (ADDED RIGHT BEFORE FOOTER) -->
+    <div style="max-width: 700px; margin: 30px auto 10px; padding: 0 12px; text-align: center;">
+        <h3 style="font-size: 15px; color: #075e54; margin-bottom: 12px; font-weight: bold;">Explore Popular WhatsApp Group Categories</h3>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
+            <a href="#categoriesContainer" onclick="filterByCategory('Entertainment')" style="background: #e2e8f0; color: #2d3748; padding: 6px 12px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: 600;">Entertainment</a>
+            <a href="#categoriesContainer" onclick="filterByCategory('Islamic')" style="background: #e2e8f0; color: #2d3748; padding: 6px 12px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: 600;">Islamic</a>
+            <a href="#categoriesContainer" onclick="filterByCategory('Videos')" style="background: #e2e8f0; color: #2d3748; padding: 6px 12px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: 600;">Videos</a>
+            <a href="#categoriesContainer" onclick="filterByCategory('Sports')" style="background: #e2e8f0; color: #2d3748; padding: 6px 12px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: 600;">Sports</a>
+            <a href="#categoriesContainer" onclick="filterByCategory('Friendship')" style="background: #e2e8f0; color: #2d3748; padding: 6px 12px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: 600;">Friendship</a>
+            <a href="#categoriesContainer" onclick="filterByCategory('Poetry')" style="background: #e2e8f0; color: #2d3748; padding: 6px 12px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: 600;">Poetry</a>
+            <a href="#categoriesContainer" onclick="filterByCategory('Movies')" style="background: #e2e8f0; color: #2d3748; padding: 6px 12px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: 600;">Movies</a>
+            <a href="#categoriesContainer" onclick="filterByCategory('Gaming')" style="background: #e2e8f0; color: #2d3748; padding: 6px 12px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: 600;">Gaming</a>
+            <a href="#categoriesContainer" onclick="filterByCategory('Trading')" style="background: #e2e8f0; color: #2d3748; padding: 6px 12px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: 600;">Trading</a>
+            <a href="#categoriesContainer" onclick="filterByCategory('Tech & Mobile')" style="background: #e2e8f0; color: #2d3748; padding: 6px 12px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: 600;">Tech & Mobile</a>
+            <a href="#categoriesContainer" onclick="filterByCategory('Online Earning')" style="background: #e2e8f0; color: #2d3748; padding: 6px 12px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: 600;">Online Earning</a>
+            <a href="#categoriesContainer" onclick="filterByCategory('Jobs')" style="background: #e2e8f0; color: #2d3748; padding: 6px 12px; border-radius: 20px; font-size: 12px; text-decoration: none; font-weight: 600;">Jobs</a>
+        </div>
+    </div>
+
 
     <!-- SUBMIT GROUP MODAL -->
     <div id="submitModal" class="modal">
         <div class="modal-content">
             <h3>Submit New Group</h3>
             <div class="form-group">
-                <label>Group Name</label>
-                <input type="text" id="subName" placeholder="Enter Group Name">
-            </div>
-            <div class="form-group">
-                <label>Category</label>
-                <select id="subCategory"></select>
-            </div>
-            <div class="form-group">
-                <label>Select Country</label>
-                <select id="subCountry"></select>
-            </div>
-            <div class="form-group">
-                <label>WhatsApp Group Link</label>
-                <input type="url" id="subLink" placeholder="https://chat.whatsapp.com/...">
-            </div>
-            <button class="btn-banner btn-left" style="width:100%" onclick="submitGroup()">Submit Group</button>
-            <button class="btn-close" onclick="closeModal('submitModal')">Close</button>
-        </div>
-    </div>
-
-    <!-- REPORT MODAL -->
-    <div id="reportModal" class="modal">
-        <div class="modal-content">
-            <h3>Report Group</h3>
-            <input type="hidden" id="reportGroupId">
-            <div class="form-group">
-                <label>Reason for Report</label>
-                <textarea id="reportReason" placeholder="Enter details why this group is invalid or broken..." style="resize: none;" rows="4"></textarea>
-            </div>
-            <button class="btn-banner btn-left" style="width:100%; margin-top:8px; background-color:#e53e3e;" onclick="sendReport()">Submit Report</button>
-            <button class="btn-close" onclick="closeModal('reportModal')">Close</button>
-        </div>
-    </div>
-
-    <!-- SECRET ADMIN LOGIN MODAL -->
-    <div id="adminLoginModal" class="modal">
-        <div class="modal-content">
-            <h3>Admin Login</h3>
-            <div class="form-group">
-                <label>Enter Password</label>
+       <label>Enter Password</label>
                 <input type="password" id="adminPass" placeholder="Enter Admin Password">
             </div>
             <button class="btn-banner btn-left" style="width:100%; margin-top:10px;" onclick="checkAdminLogin()">Login Dashboard</button>
@@ -657,7 +642,7 @@
             <button class="btn-close" onclick="closeModal('adminDashboardModal')">Exit Dashboard</button>
         </div>
     </div>
-
+    
     <!-- FOOTER SECTION -->
     <footer data-nosnippet>
         <div class="footer-content" style="max-width: 800px; margin: 0 auto;">
@@ -723,6 +708,46 @@
                 container.appendChild(section);
             });
         });
+
+        // LIVE SEARCH FUNCTIONALITY
+        function searchGroups() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let categories = document.querySelectorAll('.category-sec');
+
+            categories.forEach(section => {
+                let rows = section.querySelectorAll('.group-row');
+                let hasVisibleGroup = false;
+
+                rows.forEach(row => {
+                    let name = row.getAttribute('data-name').toLowerCase();
+                    if (name.includes(input)) {
+                        row.style.display = 'flex';
+                        hasVisibleGroup = true;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                if (hasVisibleGroup) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        // FILTER BY CATEGORY CHIP FUNCTION
+        function filterByCategory(catName) {
+            let categories = document.querySelectorAll('.category-sec');
+            categories.forEach(section => {
+                let secCat = section.getAttribute('data-category');
+                if (secCat && secCat.toLowerCase().includes(catName.toLowerCase())) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
 
         const categories = ["Entertainment", "Islamic", "Videos", "Sports", "Friendship", "Poetry", "Movies", "Gaming", "Trading", "Tech & Mobile", "Online Earning", "Jobs"];
         
@@ -852,7 +877,7 @@
             });
         }
 
- function openReportModal(id) { 
+        function openReportModal(id) { 
             document.getElementById('reportGroupId').value = id; 
             document.getElementById('reportReason').value = ''; 
             openModal('reportModal'); 
@@ -884,7 +909,7 @@
             loadAdminTabContent();
         }
 
-        function loadAdminData() {
+function loadAdminData() {
             db.ref('groups').on('value', (snapshot) => {
                 allPendingGroups = [];
                 snapshot.forEach((child) => {
