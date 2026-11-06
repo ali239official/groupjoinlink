@@ -32,9 +32,12 @@
       .req-info { font-size: 13px; color: #718096; margin-bottom: 6px; }
       .req-link { font-size: 13px; color: #075e54; word-break: break-all; margin-bottom: 12px; }
 
-      .action-btns { display: flex; gap: 10px; }
+      .action-btns { display: flex; gap: 10px; flex-wrap: wrap; }
       .btn-copy { background: #075e54; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold; }
       .btn-copy:hover { background: #0b695f; }
+
+      .btn-delete { background: #e53e3e; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold; }
+      .btn-delete:hover { background: #c53030; }
       
       .no-data { text-align: center; color: #718096; padding: 40px; background: white; border-radius: 10px; }
   </style>
@@ -93,6 +96,7 @@
                     <div class="action-btns">
                         <button class="btn-copy" onclick="copyText('name-${key}')">Copy Name</button>
                         <button class="btn-copy" onclick="copyText('link-${key}')">Copy Link</button>
+                        <button class="btn-delete" onclick="deleteRequest('${key}')">Delete Request</button>
                     </div>
                 `;
                 container.appendChild(card);
@@ -106,6 +110,16 @@
             }).catch(err => {
                 alert("Failed to copy text.");
             });
+        }
+
+        function deleteRequest(key) {
+            if (confirm("Kya aap waqai is request ko delete karna chahte hain?")) {
+                db.ref('submissions/' + key).remove().then(() => {
+                    alert("Request successfully delete ho gayi!");
+                }).catch((error) => {
+                    alert("Delete karne mein error aa gaya.");
+                });
+            }
         }
     </script>
 </body>
