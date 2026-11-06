@@ -27,7 +27,7 @@
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://groupjoinlink.com/sitemap.xml" />
   <link rel="canonical" href="https://groupjoinlink.com/" />
 
-  <!-- FIREBASE SDKs -->
+  <!-- FIREBASE v8 SDKs -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
@@ -146,6 +146,54 @@
       }
 
       .container { max-width: 700px; margin: 0 auto; padding: 0 12px; }
+
+      /* Action Buttons Box Above Categories */
+      .action-banner-box {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 10px;
+          padding: 16px;
+          margin-bottom: 20px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+          text-align: center;
+      }
+      .action-banner-box h3 { font-size: 16px; color: #075e54; margin-bottom: 6px; font-weight: bold; }
+      .action-banner-box p { font-size: 13px; color: #4a5568; margin-bottom: 14px; line-height: 1.4; }
+      .banner-btn-group {
+          display: flex;
+          gap: 10px;
+          justify-content: center;
+      }
+      .btn-action-main {
+          flex: 1;
+          display: inline-block;
+          background: #25d366;
+          color: white;
+          padding: 10px 12px;
+          border-radius: 25px;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 13px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          text-align: center;
+          white-space: nowrap;
+      }
+      .btn-action-sec {
+          flex: 1;
+          display: inline-block;
+          background: #075e54;
+          color: white;
+          padding: 10px 12px;
+          border-radius: 25px;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 13px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          text-align: center;
+          white-space: nowrap;
+      }
+      .btn-action-main:hover { background: #1ebc57; }
+      .btn-action-sec:hover { background: #0b695f; }
       
       .category-sec { background: #ffffff; border-radius: 10px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
       .category-header { border-bottom: 2px solid #25d366; padding-bottom: 8px; margin-bottom: 8px; }
@@ -166,31 +214,6 @@
       
       .group-actions { display: flex; align-items: center; gap: 10px; }
       .btn-click-join { background: #25d366; color: white; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; white-space: nowrap; }
-
-      /* Submit Group Banner Box */
-      .submit-group-box {
-          background: #ffffff;
-          border: 1px solid #e2e8f0;
-          border-radius: 10px;
-          padding: 20px;
-          margin-bottom: 20px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-          text-align: center;
-      }
-      .submit-group-box h3 { font-size: 17px; color: #075e54; margin-bottom: 8px; font-weight: bold; }
-      .submit-group-box p { font-size: 13px; color: #4a5568; margin-bottom: 15px; line-height: 1.5; }
-      .btn-submit-group {
-          display: inline-block;
-          background: #25d366;
-          color: white;
-          padding: 10px 22px;
-          border-radius: 25px;
-          text-decoration: none;
-          font-weight: bold;
-          font-size: 14px;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      }
-      .btn-submit-group:hover { background: #1ebc57; }
 
       /* Custom Secret Password Modal Styling */
       #secretModal {
@@ -259,7 +282,7 @@
             <input type="text" id="searchInput" placeholder="Search groups..." onkeyup="searchGroups()">
         </div>
 
-        <!-- Dropdown Menu -->
+        <!-- Dropdown Menu with working links -->
         <div id="dropdownMenu" class="dropdown-menu">
             <a href="submit-group.html">Add Your Group</a>
             <a href="https://whatsapp.com/channel/0029Vb8rlsx7T8bfdsy24Z17" target="_blank">Join Whatsapp Channel</a>
@@ -279,11 +302,14 @@
     <!-- MAIN CONTAINER -->
     <div class="container" id="categoriesContainer">
         
-        <!-- SUBMIT GROUP CATEGORY-STYLE BOX -->
-        <div class="submit-group-box">
-            <h3>Want to Grow Your Community?</h3>
-            <p>Add your WhatsApp group link to our directory. Get active members instantly by submitting your group name, category, and invite link.</p>
-            <a href="submit-group.html" class="btn-submit-group">Add Your Group Now</a>
+        <!-- ACTION BUTTONS BANNER ABOVE CATEGORIES -->
+        <div class="action-banner-box">
+            <h3>Grow Your Community & Stay Connected</h3>
+            <p>Submit your WhatsApp group link to our directory or join our official WhatsApp channel for daily updates.</p>
+            <div class="banner-btn-group">
+                <a href="submit-group.html" class="btn-action-main">Add Your Group</a>
+                <a href="https://whatsapp.com/channel/0029Vb8rlsx7T8bfdsy24Z17" target="_blank" class="btn-action-sec">Join Channel</a>
+            </div>
         </div>
 
         <!-- 1. Entertainment -->
@@ -443,7 +469,7 @@
             <div class="category-header">
                 <span class="category-title">Poetry WhatsApp Groups</span>
             </div>
-             <p class="category-intro">Enjoy heart-touching Urdu poetry, Shayari, and emotional lines by joining active poetry WhatsApp group links.</p>
+            <p class="category-intro">Enjoy heart-touching Urdu poetry, Shayari, and emotional lines by joining active poetry WhatsApp group links.</p>
             <div class="group-list">
                   <div class="group-row" data-name="Urdu Poetry & Shayari">
                     <span class="group-name">Urdu Poetry & Shayari</span>
@@ -730,11 +756,11 @@
                 });
 
                 if (!found) {
-                    container.innerHTML = `<div style="text-align:center; padding: 30px; color: #718096;">No groups found in this category yet. <br><br> <a href="index.html" style="color:#25d366; font-weight:bold;">← Go Back Home</a></div>`;
+                    container.innerHTML = `<div style="text-align:center; padding: 30px; color: #718096;">No groups found in this category yet. <br><br> <a href="index.html" style="color:#25d366; font-weight:bold;">Go Back Home</a></div>`;
                 } else {
                     const backDiv = document.createElement('div');
                     backDiv.style.cssText = "text-align:center; margin-top:20px;";
-                    backDiv.innerHTML = `<a href="index.html" style="color: #075e54; font-weight: bold; text-decoration: none;">← Back to All Groups</a>`;
+                    backDiv.innerHTML = `<a href="index.html" style="color: #075e54; font-weight: bold; text-decoration: none;">Back to All Groups</a>`;
                     container.appendChild(backDiv);
                 }
             }

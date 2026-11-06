@@ -11,7 +11,7 @@
   <!-- FAVICON -->
   <link rel="icon" type="image/jpeg" sizes="48x48" href="https://groupjoinlink.com/logo.jpg">
 
-  <!-- FIREBASE SDKs -->
+  <!-- FIREBASE v8 SDKs -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
@@ -98,8 +98,7 @@
             <ul class="requirements-list">
                 <li><strong>Group Name:</strong> Enter your active WhatsApp group's exact name.</li>
                 <li><strong>Category:</strong> Select the appropriate category for your group.</li>
-                <li><strong>Group Link:</strong> Provide a valid WhatsApp group invitation link (`https://chat.whatsapp.com/...`).</li>
-                <li><strong>Important Note:</strong> A specific link can only be submitted once; duplicate submissions will be automatically blocked.</li>
+                <li><strong>Group Link:</strong> Provide a valid WhatsApp group invitation link.</li>
             </ul>
         </div>
 
@@ -141,15 +140,21 @@
         </div>
 
         <div class="back-home">
-            <a href="index.html">← Back to Home</a>
+            <a href="index.html">Back to Home</a>
         </div>
     </div>
 
     <script>
-        // Firebase Configuration
         const firebaseConfig = {
-            databaseURL: "https://YOUR_FIREBASE_PROJECT_ID-default-rtdb.firebaseio.com/"
+            apiKey: "AIzaSyDgWA_fTlcmwCCVg5j2r0dzOukWd1Gddlg",
+            authDomain: "group-website-d4d5c.firebaseapp.com",
+            databaseURL: "https://group-website-d4d5c-default-rtdb.firebaseio.com",
+            projectId: "group-website-d4d5c",
+            storageBucket: "group-website-d4d5c.firebasestorage.app",
+            messagingSenderId: "451123934418",
+            appId: "1:451123934418:web:299ed74b774365d506290b"
         };
+
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
         }
@@ -162,7 +167,6 @@
             const category = document.getElementById('groupCategory').value;
             const link = document.getElementById('groupLink').value.trim();
 
-            // LocalStorage check to prevent submitting the same link multiple times
             let submittedLinks = JSON.parse(localStorage.getItem('submitted_links') || '[]');
             if (submittedLinks.includes(link)) {
                 alert("This WhatsApp group link has already been submitted!");
@@ -176,7 +180,6 @@
                 timestamp: Date.now()
             };
 
-            // Save data to Firebase Database
             db.ref('submissions').push(groupData, (error) => {
                 if (error) {
                     alert("Submission failed. Please try again.");

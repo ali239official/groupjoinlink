@@ -8,7 +8,7 @@
   <!-- SEO: Prevent search engines from indexing the admin dashboard -->
   <meta name="robots" content="noindex, nofollow">
 
-  <!-- FIREBASE SDKs -->
+  <!-- FIREBASE v8 SDKs -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
@@ -54,10 +54,17 @@
     </div>
 
     <script>
-        // Firebase Config
+        // Your Exact Firebase Configuration
         const firebaseConfig = {
-            databaseURL: "https://YOUR_FIREBASE_PROJECT_ID-default-rtdb.firebaseio.com/"
+            apiKey: "AIzaSyDgWA_fTlcmwCCVg5j2r0dzOukWd1Gddlg",
+            authDomain: "group-website-d4d5c.firebaseapp.com",
+            databaseURL: "https://group-website-d4d5c-default-rtdb.firebaseio.com",
+            projectId: "group-website-d4d5c",
+            storageBucket: "group-website-d4d5c.firebasestorage.app",
+            messagingSenderId: "451123934418",
+            appId: "1:451123934418:web:299ed74b774365d506290b"
         };
+
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
         }
