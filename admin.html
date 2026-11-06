@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Group Join Link</title>
+
+  <!-- SEO: Prevent search engines from indexing the admin dashboard -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- FIREBASE SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+  <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+      body { background-color: #f4f7f6; color: #1c1e21; padding: 20px; }
+
+      .dashboard-container { max-width: 800px; margin: 0 auto; }
+      .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; background: white; padding: 15px 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+      .header h1 { color: #075e54; font-size: 22px; }
+      .btn-logout { background: #e53e3e; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px; text-decoration: none; }
+
+      .request-card {
+          background: white;
+          border-radius: 10px;
+          padding: 16px;
+          margin-bottom: 15px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+          border-left: 4px solid #25d366;
+      }
+      .req-title { font-size: 16px; font-weight: bold; color: #2d3748; margin-bottom: 4px; }
+      .req-cat { font-size: 13px; color: #718096; margin-bottom: 8px; }
+      .req-link { font-size: 13px; color: #075e54; word-break: break-all; margin-bottom: 12px; }
+
+      .action-btns { display: flex; gap: 10px; }
+      .btn-copy { background: #075e54; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold; }
+      .btn-copy:hover { background: #0b695f; }
+      
+      .no-data { text-align: center; color: #718096; padding: 40px; background: white; border-radius: 10px; }
+  </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <div class="header">
+            <h1>Admin Dashboard - Latest Submissions</h1>
+            <a href="index.html" class="btn-logout">Exit Dashboard</a>
+        </div>
+
+        <div id="submissionsList">
+            <div class="no-data">Loading submissions...</div>
+        </div>
+    </div>
+
+    <script>
+        // Firebase Config
+        const firebaseConfig = {
+            databaseURL: "https://YOUR_FIREBASE_PROJECT_ID-default-rtdb.firebaseio.com/"
+        };
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.database();
+
+        // Fetch Submissions from Firebase
+        const subRef = db.ref('submissions');
+        subRef.on('value', (snapshot) => {
+            const container = document.getElementById('submissionsList');
+            container.innerHTML = '';
+
+            if (!snapshot.exists()) {
+                container.innerHTML = `<div class="no-data">No group submissions found yet.</div>`;
+                return;
+            }
+
+            let data = snapshot.val();
+            let keys = Object.keys(data).reverse(); // Latest submissions on top
+
+            keys.forEach(key => {
+                let item = data[key];
+                
+                let card = document.createElement('div');
+                card.className = 'request-card';
+                card.innerHTML = `
+                    <div class="req-title" id="name-${key}">${item.name}</div>
+                    <div class="req-cat">Category: <b>${item.category}</b></div>
+                    <div class="req-link" id="link-${key}">${item.link}</div>
+                    <div class="action-btns">
+                        <button class="btn-copy" onclick="copyText('name-${key}')">Copy Name</button>
+                        <button class="btn-copy" onclick="copyText('link-${key}')">Copy Link</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        });
+
+        // Copy Function
+        function copyText(elementId) {
+            let text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Copied to clipboard: " + text);
+            }).catch(err => {
+                alert("Failed to copy text.");
+            });
+        }
+    </script>
+</body>
+</html>
