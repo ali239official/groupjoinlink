@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard - Group Join Link</title>
 
-  <!-- SEO: Prevent search engines from indexing the admin dashboard -->
   <meta name="robots" content="noindex, nofollow">
 
   <!-- FIREBASE v8 SDKs -->
@@ -30,7 +29,7 @@
           border-left: 4px solid #25d366;
       }
       .req-title { font-size: 16px; font-weight: bold; color: #2d3748; margin-bottom: 4px; }
-      .req-cat { font-size: 13px; color: #718096; margin-bottom: 8px; }
+      .req-info { font-size: 13px; color: #718096; margin-bottom: 6px; }
       .req-link { font-size: 13px; color: #075e54; word-break: break-all; margin-bottom: 12px; }
 
       .action-btns { display: flex; gap: 10px; }
@@ -44,7 +43,7 @@
 
     <div class="dashboard-container">
         <div class="header">
-            <h1>Admin Dashboard - Latest Submissions</h1>
+            <h1>Admin Dashboard</h1>
             <a href="index.html" class="btn-logout">Exit Dashboard</a>
         </div>
 
@@ -54,15 +53,14 @@
     </div>
 
     <script>
-        // Your Exact Firebase Configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyDgWA_fTlcmwCCVg5j2r0dzOukWd1Gddlg",
-            authDomain: "group-website-d4d5c.firebaseapp.com",
-            databaseURL: "https://group-website-d4d5c-default-rtdb.firebaseio.com",
-            projectId: "group-website-d4d5c",
-            storageBucket: "group-website-d4d5c.firebasestorage.app",
-            messagingSenderId: "451123934418",
-            appId: "1:451123934418:web:299ed74b774365d506290b"
+          apiKey: "AIzaSyA3IddMLRa2hilO7aoCWFi1T4jzUHjAK48",
+          authDomain: "whatsapp-directory-fa7b9.firebaseapp.com",
+          databaseURL: "https://whatsapp-directory-fa7b9-default-rtdb.firebaseio.com",
+          projectId: "whatsapp-directory-fa7b9",
+          storageBucket: "whatsapp-directory-fa7b9.firebasestorage.app",
+          messagingSenderId: "215715225006",
+          appId: "1:215715225006:web:65dc7f7057e19f1105fc3f"
         };
 
         if (!firebase.apps.length) {
@@ -70,7 +68,6 @@
         }
         const db = firebase.database();
 
-        // Fetch Submissions from Firebase
         const subRef = db.ref('submissions');
         subRef.on('value', (snapshot) => {
             const container = document.getElementById('submissionsList');
@@ -82,7 +79,7 @@
             }
 
             let data = snapshot.val();
-            let keys = Object.keys(data).reverse(); // Latest submissions on top
+            let keys = Object.keys(data).reverse();
 
             keys.forEach(key => {
                 let item = data[key];
@@ -91,7 +88,7 @@
                 card.className = 'request-card';
                 card.innerHTML = `
                     <div class="req-title" id="name-${key}">${item.name}</div>
-                    <div class="req-cat">Category: <b>${item.category}</b></div>
+                    <div class="req-info">Category: <b>${item.category}</b></div>
                     <div class="req-link" id="link-${key}">${item.link}</div>
                     <div class="action-btns">
                         <button class="btn-copy" onclick="copyText('name-${key}')">Copy Name</button>
@@ -102,7 +99,6 @@
             });
         });
 
-        // Copy Function
         function copyText(elementId) {
             let text = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(text).then(() => {
