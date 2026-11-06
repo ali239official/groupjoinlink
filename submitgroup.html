@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Your WhatsApp Group - Group Join Link</title>
+  
+  <!-- SEO: Prevent search engines from indexing the submission page -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/jpeg" sizes="48x48" href="https://groupjoinlink.com/logo.jpg">
+
+  <!-- FIREBASE SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+  <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+      body { background-color: #ffffff; color: #1c1e21; padding-bottom: 30px; }
+
+      .main-navbar {
+          background-color: #25d366;
+          color: white;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 12px 15px;
+          width: 100%;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      }
+      .nav-brand { font-size: 19px; font-weight: bold; font-style: italic; text-decoration: none; color: white; }
+
+      .container { max-width: 600px; margin: 25px auto; padding: 0 15px; }
+
+      .card {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 10px;
+          padding: 20px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+          margin-bottom: 20px;
+      }
+      h2 { color: #075e54; font-size: 20px; margin-bottom: 12px; }
+      
+      .requirements-list {
+          padding-left: 20px;
+          font-size: 14px;
+          color: #4a5568;
+          line-height: 1.6;
+          margin-bottom: 15px;
+      }
+      .requirements-list li { margin-bottom: 6px; }
+
+      .form-group { margin-bottom: 15px; }
+      .form-group label { display: block; font-size: 14px; font-weight: 600; color: #2d3748; margin-bottom: 6px; }
+      .form-group input, .form-group select {
+          width: 100%;
+          padding: 10px 12px;
+          border: 1px solid #cbd5e0;
+          border-radius: 8px;
+          font-size: 14px;
+          outline: none;
+      }
+      .form-group input:focus, .form-group select:focus {
+          border-color: #25d366;
+      }
+
+      .btn-submit {
+          background: #25d366;
+          color: white;
+          border: none;
+          width: 100%;
+          padding: 12px;
+          border-radius: 25px;
+          font-size: 15px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: background 0.2s;
+      }
+      .btn-submit:hover { background: #1ebc57; }
+
+      .back-home { text-align: center; margin-top: 15px; }
+      .back-home a { color: #075e54; text-decoration: none; font-weight: 600; font-size: 14px; }
+      .back-home a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+    <div class="main-navbar">
+        <a href="index.html" class="nav-brand">Group Join Link</a>
+    </div>
+
+    <div class="container">
+        <!-- REQUIREMENTS CARD -->
+        <div class="card">
+            <h2>Group Submission Requirements</h2>
+            <ul class="requirements-list">
+                <li><strong>Group Name:</strong> Enter your active WhatsApp group's exact name.</li>
+                <li><strong>Category:</strong> Select the appropriate category for your group.</li>
+                <li><strong>Group Link:</strong> Provide a valid WhatsApp group invitation link (`https://chat.whatsapp.com/...`).</li>
+                <li><strong>Important Note:</strong> A specific link can only be submitted once; duplicate submissions will be automatically blocked.</li>
+            </ul>
+        </div>
+
+        <!-- SUBMIT FORM CARD -->
+        <div class="card">
+            <h2>Add Your Group</h2>
+            <form id="groupForm" onsubmit="submitGroup(event)">
+                <div class="form-group">
+                    <label for="groupName">Group Name</label>
+                    <input type="text" id="groupName" required placeholder="e.g. Cricket Lovers Pak">
+                </div>
+
+                <div class="form-group">
+                    <label for="groupCategory">Category</label>
+                    <select id="groupCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Islamic">Islamic</option>
+                        <option value="Videos">Videos</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Friendship">Friendship</option>
+                        <option value="Poetry">Poetry</option>
+                        <option value="Movies">Movies</option>
+                        <option value="Gaming">Gaming</option>
+                        <option value="Trading">Trading</option>
+                        <option value="Tech & Mobile">Tech & Mobile</option>
+                        <option value="Online Earning">Online Earning</option>
+                        <option value="Jobs">Jobs</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="groupLink">WhatsApp Group Link</label>
+                    <input type="url" id="groupLink" required placeholder="https://chat.whatsapp.com/...">
+                </div>
+
+                <button type="submit" class="btn-submit">Submit Group</button>
+            </form>
+        </div>
+
+        <div class="back-home">
+            <a href="index.html">← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            databaseURL: "https://YOUR_FIREBASE_PROJECT_ID-default-rtdb.firebaseio.com/"
+        };
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.database();
+
+        function submitGroup(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('groupName').value.trim();
+            const category = document.getElementById('groupCategory').value;
+            const link = document.getElementById('groupLink').value.trim();
+
+            // LocalStorage check to prevent submitting the same link multiple times
+            let submittedLinks = JSON.parse(localStorage.getItem('submitted_links') || '[]');
+            if (submittedLinks.includes(link)) {
+                alert("This WhatsApp group link has already been submitted!");
+                return;
+            }
+
+            const groupData = {
+                name: name,
+                category: category,
+                link: link,
+                timestamp: Date.now()
+            };
+
+            // Save data to Firebase Database
+            db.ref('submissions').push(groupData, (error) => {
+                if (error) {
+                    alert("Submission failed. Please try again.");
+                } else {
+                    submittedLinks.push(link);
+                    localStorage.setItem('submitted_links', JSON.stringify(submittedLinks));
+
+                    alert("Group submitted successfully! It will be displayed after admin review.");
+                    document.getElementById('groupForm').reset();
+                    window.location.href = "index.html";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
