@@ -33,8 +33,11 @@
       .req-link { font-size: 13px; color: #075e54; word-break: break-all; margin-bottom: 12px; }
 
       .action-btns { display: flex; gap: 10px; flex-wrap: wrap; }
-      .btn-copy { background: #075e54; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold; }
+      .btn-copy { background: #075e54; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold; text-decoration: none; display: inline-block; text-align: center; }
       .btn-copy:hover { background: #0b695f; }
+
+      .btn-check { background: #25d366; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold; text-decoration: none; display: inline-block; text-align: center; }
+      .btn-check:hover { background: #1ebc57; }
 
       .btn-delete { background: #e53e3e; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold; }
       .btn-delete:hover { background: #c53030; }
@@ -96,6 +99,7 @@
                     <div class="action-btns">
                         <button class="btn-copy" onclick="copyText('name-${key}')">Copy Name</button>
                         <button class="btn-copy" onclick="copyText('link-${key}')">Copy Link</button>
+                        <a href="${item.link}" target="_blank" class="btn-check">Check Group</a>
                         <button class="btn-delete" onclick="deleteRequest('${key}')">Delete Request</button>
                     </div>
                 `;
