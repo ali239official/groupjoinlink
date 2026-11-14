@@ -227,26 +227,6 @@
       .group-actions { display: flex; align-items: center; gap: 10px; }
       .btn-click-join { background: #25d366; color: white; text-decoration: none; padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; white-space: nowrap; }
 
-      /* Disclaimer Box Style */
-      .disclaimer-box {
-          background: #fdfdfe;
-          border: 1px solid #e2e8f0;
-          border-left: 4px solid #075e54;
-          border-radius: 8px;
-          padding: 14px 16px;
-          margin-top: 35px;
-          font-size: 13px;
-          color: #4a5568;
-          line-height: 1.5;
-          text-align: left;
-      }
-      .disclaimer-box strong {
-          color: #075e54;
-          display: block;
-          margin-bottom: 4px;
-          font-size: 14px;
-      }
-
       /* Custom Secret Password Modal Styling */
       #secretModal {
           display: none;
@@ -460,7 +440,7 @@
                     <span class="group-name">Beautiful Videos</span>
                     <div class="group-actions">
                         <a href="https://chat.whatsapp.com/JagCDqw36P30PDodUTU573?s=cl&p=a&mlu=4&ilr=4&iam=2" target="_blank" class="btn-click-join">Click Join</a>
-                    </div>
+                     </div>
                 </div>
             </div>
         </div>
@@ -743,34 +723,7 @@
                 </div>
             </div>
         </div>
-         <!-- 13. Frequently Asked Questions (FAQ) - SEO Optimized -->
-        <div class="category-sec" data-category="FAQ">
-            <div class="category-header">
-                <span class="category-title">Frequently Asked Questions (FAQ)</span>
-            </div>
-            <p class="category-intro">Find answers to common questions about joining and sharing groups on groupjoinlink.com.</p>
-            
-            <div class="group-list">
-                <div class="group-row" style="flex-direction: column; align-items: flex-start; gap: 4px;">
-                    <strong style="color: #075e54; font-size: 14px;">Q1: How can I join WhatsApp groups on groupjoinlink.com?</strong>
-                    <p style="font-size: 13px; color: #4a5568; line-height: 1.4;">Simply browse through your preferred category (like Online Earning, Gaming, or Islamic) and click the green "Click Join" button next to any group to open it directly in WhatsApp.</p>
-                </div>
-
-                <div class="group-row" style="flex-direction: column; align-items: flex-start; gap: 4px;">
-                    <strong style="color: #075e54; font-size: 14px;">Q2: Can I add my own WhatsApp group link to this directory?</strong>
-                    <p style="font-size: 13px; color: #4a5568; line-height: 1.4;">Yes! Click on the "Add Your Group" button in the menu or top banner, fill out your group name, select the right category, and submit your invite link for admin review.</p>
-                </div>
-
-                <div class="group-row" style="flex-direction: column; align-items: flex-start; gap: 4px;">
-                    <strong style="color: #075e54; font-size: 14px;">Q3: Are these WhatsApp group links 100% active?</strong>
-                    <p style="font-size: 13px; color: #4a5568; line-height: 1.4;">We try our best to list active communities, but if a group link is expired or full, it may be removed or replaced by admins periodically.</p>
-                </div>
-            </div>
-        </div>
-
-      
-
-    </div> <!-- END OF CONTAINER -->
+</div> <!-- END OF CONTAINER -->
 
     <!-- CUSTOM SECRET PASSWORD MODAL POPUP -->
     <div id="secretModal">
@@ -803,6 +756,17 @@
         </div>
     </div>
     
+    <!-- FOOTER SECTION WITH DISCLAIMER AND SECRET TRIGGER -->
+    <footer data-nosnippet style="background-color: #ffffff; padding: 25px 20px; text-align: center; border-top: 1px solid #e9ecef; margin-top: 40px;">
+        <div class="footer-content" style="max-width: 800px; margin: 0 auto;">
+            <div style="font-size: 12px; color: #718096; margin-bottom: 15px; line-height: 1.5;">
+                <strong>Disclaimer:</strong> We are not the owners or administrators of any WhatsApp groups listed here. Join all groups at your own risk. We are not responsible for any content shared inside the groups.
+            </div>
+            <p id="secretTrigger" style="font-size: 13px; color: #4a5568; cursor: pointer; user-selected: none; -webkit-user-select: none;">
+                &copy; 2026 Group Join Link - All Rights Reserved.
+            </p>
+        </div>
+    </footer>
 
     <script>
         // Toggle Search Overlay
@@ -833,13 +797,18 @@
 
         // 4-TAP SECRET ADMIN TRIGGER ON COPYRIGHT TEXT
         let tapCount = 0;
-        document.getElementById('secretTrigger').addEventListener('click', function() {
-            tapCount++;
-            if (tapCount >= 4) {
-                tapCount = 0;
-                document.getElementById('secretModal').style.display = 'flex';
-                document.getElementById('secretInput').value = '';
-                document.getElementById('secretInput').focus();
+        document.addEventListener("DOMContentLoaded", function() {
+            const trigger = document.getElementById('secretTrigger');
+            if (trigger) {
+                trigger.addEventListener('click', function() {
+                    tapCount++;
+                    if (tapCount >= 4) {
+                        tapCount = 0;
+                        document.getElementById('secretModal').style.display = 'flex';
+                        document.getElementById('secretInput').value = '';
+                        document.getElementById('secretInput').focus();
+                    }
+                });
             }
         });
 
@@ -873,7 +842,7 @@
 
                 sections.forEach(sec => {
                     const secCat = sec.getAttribute('data-category');
-                    if (secCat && secCat.toLowerCase() === catQuery.toLowerCase()) {
+                    if (secCat && secCat.trim().toLowerCase() === catQuery.trim().toLowerCase()) {
                         sec.style.display = 'block';
                         found = true;
                     } else {
@@ -919,17 +888,6 @@
             });
         }
     </script>
-    <!-- FOOTER SECTION WITH DISCLAIMER -->
-    <footer data-nosnippet style="background-color: #ffffff; padding: 25px 20px; text-align: center; border-top: 1px solid #e9ecef; margin-top: 40px;">
-        <div class="footer-content" style="max-width: 800px; margin: 0 auto;">
-            <div style="font-size: 12px; color: #718096; margin-bottom: 15px; line-height: 1.5;">
-                <strong>Disclaimer:</strong> We are not the owners or administrators of any WhatsApp groups listed here. Join all groups at your own risk. We are not responsible for any content shared inside the groups.
-            </div>
-            <p id="secretTrigger" style="font-size: 13px; color: #4a5568; cursor: pointer; user-select: none;">
-                &copy; 2026 Group Join Link - All Rights Reserved.
-            </p>
-        </div>
-    </footer>
 
 </body>
 </html>
